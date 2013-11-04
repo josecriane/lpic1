@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=1024, user-scalable=no">
+
+	<title>LPIC Slides</title>
+	
+	<!-- Required stylesheet -->
+	<link rel="stylesheet" href="core/deck.core.css">
+	<link rel="stylesheet" href="extensions/status/deck.status.css">
+	<link rel="stylesheet" href="extensions/scale/deck.scale.css">
+	<link rel="stylesheet" href="extensions/hash/deck.hash.css">
+
+	<link rel="stylesheet" href="themes/style/lpic_slides.css">
+	<link rel="stylesheet" href="themes/transition/horizontal-slide.css">
+	
+	<!-- Required Modernizr file -->
+	<script src="modernizr.custom.js"></script>
+</head>
+<body>
+
+	<header>
+		<span><a href="http://josecriane.com/lpic/">Inicio</a></span>
+	</header>
+
+<!-- Begin slides. Just make elements with a class of slide. -->
+	<article class="deck-container">
+		<section class="slide">
+			<h1>Propiedades de los ficheros</h1>
+		</section>
+
+		<section class="slide">
+			<h2>Propiedades</h2>
+			<ul>
+				<li>
+					<pre>$ ls -l /tmp
+srwxr-xr-x  1 sito sito   89 nov  1 16:38 virt_1113
+-rw-------  1 sito users 969 nov  1 16:38 virtuoso_ik1929.ini
+-r--r--r--  1 root root   11 nov  1 16:38 .X0-lock</pre>
+				</li> 
+				<li class="slide">
+					<code>srwxr-xr-x</code>, estos son los permisos del fichero
+				</li> 
+				<li class="slide">
+					<code>sito users</code>, usuario y grupo.
+				</li>
+				<li class="slide">
+					<code>89</code>, tamaño del fichero.
+				</li>
+				<li class="slide">
+					<code>nov  1 16:38</code>, fecha del fichero.
+				</li>
+				<li class="slide">
+					<code>virt_1113</code>, nombre del fichero.
+				</li>
+			</ul>
+			<p class="deck-status">
+				<span class="deck-status-current"></span>/<span class="deck-status-total"></span>
+			</p>
+		</section>
+
+		<section class="slide">
+			<h2>Cambiar propietario y grupo de un fichero</h2>
+			<ul>
+				<li>
+					<code>chown [OPCIONES] [PROPIETARIO] [:GRUPO] nombre_del_fichero</code>
+				</li>
+				<li class="slide">
+					Con este comando podremos cambiar el propietario de un fichero.<br>Ej. <code>$ chown sito .ficheroDeMarce</code>, esto cambiará el propietario del fichero "ficheroDeMarce" haciendo que el nuevo propietario sea sito.
+				</li>
+				<li class="slide">
+					Con este comando podremos cambiar el propietario de un fichero.<br>Ej. <code>$ chown sito:adm .ficheroDeMarce</code>, esto cambiará el propietario y el grupo del fichero "ficheroDeMarce" haciendo que el nuevo propietario sea sito y el grupo sea adm
+				</li> 
+				<li class="slide">
+					<code>chgrp [OPCIONES] grupo nombre_del_fichero</code>, este comando sería el que usaríamos si solo quisieramos cambiar el grupo del fichero.
+				</li>
+				<li class="slide">
+					<strong>-R, --recursive</strong>, tanto chown y chgrp admiten este comando para hacer los cambios de forma recursiva.
+				</li>
+			</ul>
+			<p class="deck-status">
+				<span class="deck-status-current"></span>/<span class="deck-status-total"></span>
+			</p>
+		</section>
+
+		<section class="slide">
+			<h2>Permisos</h2>
+			<ul>
+				<li>
+					<code>-rwxrwxrwx</code> 
+				</li> 
+				<li class="slide">
+					Tenemos 10 caracteres, que podemos separar de la siguiente manera:
+					<ul>
+						<li class="slide">El primer caracter, <code>-</code>, indica el tipo de fichero, del que hablaremos un poco más adelante.</li>
+						<li class="slide">Los siguientes 3 caracteres, representan los permisos de usuario.</li>
+						<li class="slide">Los 3 caracteres del medio, representan los permisos del grupo.</li>
+						<li class="slide">Los ultimos 3 caracteres, representan los permisos del resto.</li>
+					</ul>
+				</li> 
+				<li class="slide">
+					Para cada bloque de 3 caracteres tenemos vamos a tener los siguientes permisos.
+					<ul>
+						<li class="slide"><code>r--</code>, representa que el fichero se puede leer.</li>
+						<li class="slide"><code>-w-</code>, representa que el fichero puede ser escrito.</li>
+						<li class="slide"><code>--x</code>, representa que el fichero tiene permisos de ejecución.</li>
+					</ul>
+				</li>
+			</ul>
+			<p class="deck-status">
+				<span class="deck-status-current"></span>/<span class="deck-status-total"></span>
+			</p>
+		</section>
+
+		<section class="slide">
+			<h2>Representación de los permisos</h2>
+			<ul>
+				<li class="slide">
+					Vamos a tratar los permisos como si fueran bits y los juntaremos en bloques de 3 de tal forma que:
+					<ul>
+						<li class="slide"><code>r--</code>, el bit de solo lectura será 100 en binario que viene siendo 4.</li>
+						<li class="slide"><code>-w-</code>, el de escritura ser 010 en binario, es decir, 2.</li>
+						<li class="slide"><code>--x</code>, si se puede ejecutar se muestra como 001, es decir 1.</li>
+					</ul>
+				</li> 
+				<li class="slide">
+					Si un fichero, tiene más de un unico permiso, lo único que tenemos que hacer es sumar su valor. Algunos ejemplos tipicos:
+					<ul>
+						<li class="slide"><code>rw-</code>, Será 4 + 2, o lo que es lo mismo 6, 110 en binario</li>
+						<li class="slide"><code>r-x</code>, Será 4 + 1, es decir, 5, 101 en binario.</li>
+						<li class="slide"><code>rwx</code>, Será 4 + 2 + 1, por lo que tenemos 7, 111 en binario.</li>
+						<li class="slide"><code>---</code>, No tiene permisos por lo que será 0, 000 en binario.</li>
+					</ul>
+				</li>
+				<li class="slide">
+					Ahora solo tendremos que juntar, los permisos de usuario, grupo y otros para poder definir los permisos finales del fichero, a este tipo de nomenclaruta se la denomina octal
+					<ul>
+						<li class="slide"><code>777</code>, representa que todo el mundo puede leer, escribir y ejecutar el fichero</li>
+						<li class="slide"><code>700</code>, solo el propietario puede leer, escribir y ejuectar el fichero.</li>
+						<li class="slide"><code>640</code>, el propietario puede leer y escribir en el fichero y el grupo solo puede leer.</li>
+						<li class="slide"><code>644</code>, todo el mundo puede leer y el propietario puede a mayores escribir en el fichero.</li>
+					</ul>
+				</li>
+			</ul>
+			<p class="deck-status">
+				<span class="deck-status-current"></span>/<span class="deck-status-total"></span>
+			</p>
+		</section>
+
+		<section class="slide">
+			<h2>Bits de permisos especiales</h2>
+			<ul>
+				<li class="slide">
+					Además de rwx, existen otro tipo de bits para los permisos que veremos ahora.
+				</li> 
+				<li class="slide">
+					El bit set user ID, <code>SUID</code>, se usa para que cuando un fichero es ejecutado, en lugar de que se ejecute con los permisos del usuario que ejecuta el fichero, lo haga con los permisos del propietario del fichero, este bit se muestra en la consola sustituyendo el "x" del usuario por una "s". Si un fichero del usuario root tiene el bit SUID activado, cuando se ejecute lo hará con permisos de root.
+				</li>
+				<li class="slide">
+					El bit set group ID, <code>SGID</code>, muy similar al bit SUID, cuando se define este bit en un directorio proboca que los nuevos ficheros o subdirectorios creados dentro de este directorio heredarán el grupo del propietario del directorio, este bit se muestra en la consola sustituyendo el "x" del grupo por una "s".
+				</li>
+				<li class="slide">
+					El sticky bit, se utiliza para que un fichero no pueda ser eliminado por los usuarios que no son sus propietarios. Cuando está presente en un directorio solo el propietario del directorio y el usuario root puede borrar esos ficheros. Este bit se representa con una "t" en lugar de la "x" en el apartado de permisos de otros.
+				</li>
+				<li class="slide">
+					¡¡¡Cuidado!!!, es el bit SUID, puede provocar graves problemas de seguridad, sobretodo si el propietario del fichero es el usuario root.<br>Actualmente, exiten las ACL que es una nueva y más completa manera de gestionar los permisos, además sigue siendo compatible con el sistema de permisos de siempre.
+				</li>
+			</ul>
+			<p class="deck-status">
+				<span class="deck-status-current"></span>/<span class="deck-status-total"></span>
+			</p>
+		</section>
+		<section class="slide">
+			<h2>Cambiar permisos</h2>
+			<ul>
+				<li>
+					<code>chmod [OPCIONES] [PERMISOS] ficheros</code>
+				</li> 
+				<li class="slide">
+					Al igual que chown y chgrp, este comando es compatible con la opción -R o --recursive.
+				</li>
+				<li class="slide">
+					Utilizamos nomenclatura octal para definir los permisos, ej. <code>$ chmod 644 .bashrc</code>, en este ejemplo estamos poniendoles a .bashrc los permisos de 644.
+				</li>
+				<li class="slide">
+					Podemos añadir los bits especiales añadiendo un nuevo trio de bit al inicio, siendo 4 SUID, 2 SGID, y 1 sticky bit.<br>¿Qué permisos tendrá un fichero si hacemos chmod 6755?
+				</li>
+			</ul>
+			<p class="deck-status">
+				<span class="deck-status-current"></span>/<span class="deck-status-total"></span>
+			</p>
+		</section>
+		<section class="slide">
+			<h2>Tipos de ficheros</h2>
+			<ul>
+				<li class="slide">
+					Cuando vemos los permisos con el comando "ls -l", el primer bit indica el tipo de fichero, y estos son tipos de bits validos.
+				</li> 
+				<ul>
+					<li class="slide"><code>-</code>: Fichero normal, puede ser un fichero de texto o un binario, una imagen...</li>
+					<li class="slide"><code>d</code>: Se trata de un directorio</li>
+					<li class="slide"><code>l</code>: Enlace simbolico</li>
+					<li class="slide"><code>p</code>: Un pipe con nombre, se suele usar para que varios programas se comuniquen entre si.</li>
+					<li class="slide"><code>s</code>: Socket, similar al pipe, pero permite los enlaces bidireccionales.</li>
+					<li class="slide"><code>b</code>: Dispositivo de bloque. Generalmente vinculado a un dispositivo hardware</li>
+					<li class="slide"><code>c</code>: Dispositivo de carácteres.</li>
+				</ul>
+			</ul>
+			<p class="deck-status">
+				<span class="deck-status-current"></span>/<span class="deck-status-total"></span>
+			</p>
+		</section>
+	</article>
+<!-- End slides. -->
+
+<!-- Required JS files. -->
+<script src="jquery-1.7.2.min.js"></script>
+<script src="core/deck.core.js"></script>
+<script src="extensions/hash/deck.hash.js"></script>
+<script src="extensions/status/deck.status.js"></script>
+<script src="extensions/scale/deck.scale.js"></script>
+
+<!-- Initialize the deck. You can put this in an external file if desired. -->
+<script>
+	$(function() {
+		$.deck('.slide');
+	});
+</script>
+</body>
+</html>

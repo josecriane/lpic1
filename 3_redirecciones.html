@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=1024, user-scalable=no">
+
+	<title>LPIC Slides</title>
+	
+	<!-- Required stylesheet -->
+	<link rel="stylesheet" href="core/deck.core.css">
+	<link rel="stylesheet" href="extensions/status/deck.status.css">
+	<link rel="stylesheet" href="extensions/scale/deck.scale.css">
+	<link rel="stylesheet" href="extensions/hash/deck.hash.css">
+
+	<link rel="stylesheet" href="themes/style/lpic_slides.css">
+	<link rel="stylesheet" href="themes/transition/horizontal-slide.css">
+	
+	<!-- Required Modernizr file -->
+	<script src="modernizr.custom.js"></script>
+</head>
+<body>
+	<header>
+		<span><a href="http://josecriane.com/lpic/">Inicio</a></span>
+	</header>
+
+<!-- Begin slides. Just make elements with a class of slide. -->
+	<article class="deck-container">
+		<section class="slide">
+			<h1>Redirecciones y Pipes</h1>
+		</section>
+
+		<section class="slide">
+			<h2>Flujos estádar</h2>
+			<ul>
+				<li class="slide">
+					<strong>Entrada estándar</strong>: Los programas aceptan entrada por teclado, como la entrada estandar también llamada stdin.
+				</li> 
+				<li class="slide">
+					<strong>Salida estándar</strong>: La salida de los programas normalmente se muestra por pantalla, a esto se le llama salida estándar o stdout.
+				</li> 
+				<li class="slide">
+					<strong>Error estándar</strong>: Cuando un programa falla y nos muestra errores lo hace por el flujo del error estándar o stderr, que suele coincidir con la salida estandar, es decir, que se muestra por pantalla.
+				</li>
+			</ul>
+			<p class="deck-status">
+				<span class="deck-status-current"></span>/<span class="deck-status-total"></span>
+			</p>
+		</section>
+
+		<section class="slide">
+			<h2>Redirigir los flujos estándar</h2>
+			<ul>
+				<li class="slide">
+					En muchas ocasiones nos interes almacenar en un fichero la salida de un programa, o usar un fichero como entrada para un programa, para esto tenemos las siguientes redirecciones.
+				</li>
+				<li class="slide">
+					<strong>Redirigir salida</strong>: Suele ser lo más común, para ellos contamos con los siguiente comandos:
+					<ul>
+						<li class="slide"><code>></code>: Con esto creamos un fichero que contendrá la salida del programa previo. En caso de que el fichero exista lo sobreescribe.</li>
+						<li class="slide"><code>>></code>: Añade la salida a un fichero, si el fichero existe lo añadirá al final del fichero. Y si no existe lo crea.</li>
+					</ul>
+				</li>
+				<li class="slide">
+					<strong>Redirigir error</strong>: Contamos con los siguiente comandos:
+					<ul>
+						<li class="slide"><code>2></code>: Con esto creamos un fichero que contendrá el error del programa previo. En caso de que el fichero exista lo sobreescribe.</li>
+						<li class="slide"><code>2>></code>: Añade el error a un fichero, si el fichero existe lo añadirá al final del fichero. Y si no existe lo crea.</li>
+					</ul>
+				</li> 
+				<li class="slide">
+					<strong>Redirigir salida y error</strong>: Si usamos <code>&></code> creamos un fichero que contiene tanto la salida, como el error, al igual que en los casos anteriores si no existe lo crea
+				</li>
+				<li class="slide">
+					<strong>Redirigir entrada</strong>: Suele poco común, y cuando se utiliza suele ser para automatizar tareas:
+					<ul>
+						<li class="slide"><code><</code>: Con esto usamos un fichero como entrada del programa previo.</li>
+						<li class="slide"><code><<</code>: Acepta el texto de las siguientes lineas como entrada del programa..</li>
+					</ul>
+				</li> 
+			</ul>
+			<p class="deck-status">
+				<span class="deck-status-current"></span>/<span class="deck-status-total"></span>
+			</p>
+		</section>
+
+		<section class="slide">
+			<h2>Pipes</h2>
+			<ul>
+				<li class="slide">
+					En otras ocasiones nos interesa que la salida de un programa sea la entrada de otro, y para esto tenemos una de las herramientas más poderosas de Linux, los Pipes. 
+				</li> 
+				<li class="slide">
+					Usamos el caracter <strong>|</strong> para definir los pipes en linux.
+				</li> 
+				<li class="slide">
+					<code>Comando1 | Comando 2</code>, esto redirecciona la salida de Comando1 a la entrada de Comando2
+				</li>
+				<li class="slide">
+					Los pipes se pueden anidar de forma que si tenemos: <br><code>Comando1 | Comando2 | Comando3 | ...</code><br> la salida de Comando1 es la entrada del Comando2 cuya salida es la entrada del Comando3, y asi hasta que terminen todos los pipes.
+				</li>
+			</ul>
+			<p class="deck-status">
+				<span class="deck-status-current"></span>/<span class="deck-status-total"></span>
+			</p>
+		</section>
+	</article>
+<!-- End slides. -->
+
+<!-- Required JS files. -->
+<script src="jquery-1.7.2.min.js"></script>
+<script src="core/deck.core.js"></script>
+<script src="extensions/hash/deck.hash.js"></script>
+<script src="extensions/status/deck.status.js"></script>
+<script src="extensions/scale/deck.scale.js"></script>
+
+<!-- Initialize the deck. You can put this in an external file if desired. -->
+<script>
+	$(function() {
+		$.deck('.slide');
+	});
+</script>
+</body>
+</html>
