@@ -1,4 +1,9 @@
 @charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   background-image: url("../../resources/body_bg.jpg");
   background-repeat: repeat;
@@ -6,7 +11,7 @@ body {
 
 .deck-container {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
-  font-size: 1.75em;
+  font-size: 1.6em;
   background: #838383;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
   width: 60%;
@@ -270,12 +275,17 @@ ol{
 
 header{
   background-color: #838383;
-  width: 4em;
   margin: auto;
-  border-radius: 0em 0em 2em 2em;
-  font-size: 2em;
+  margin-bottom: 1em;
+  font-size: 1.3em;
 }
 
 header span{
-  margin-left: 0.8em;
+  margin-left: 0.5em;
+}
+
+@media (max-width: 1024px) {
+  header {
+    font-size: 1em;
+  }
 }
