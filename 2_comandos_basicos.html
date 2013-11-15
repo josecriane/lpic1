@@ -38,7 +38,7 @@
 					<code>$ cd DIRECTORIO</code>: Este comando sirve para cambiar de directorio.<br />Ej: <code>$ cd /home/usuario/</code>, Se cambiará al directorio HOME del usuario.<br /> Existen dos atajos para el directorio HOME, "~", y "$HOME". El segundo de ellos, es una variable de entorno, más adelante hablaremos de ellas.
 				</li> 
 				<li class="slide">
-					<code>$ ls [OPCIONES] [DIRECTORIO]</code>: Sirve para listar el contenido de un directorio.<br />Ej: <code>$ ls -la /home/usuario</code>, este ejemplo nos mostrará todos los ficheros que el usuario tuviera dentro de su directorio, mostrandonos tambien pues los permisos, el tamaño, el usuario y el grupo al que pertenece el fichero, incluyendo además todos los ficheros ocultos.<br />Las opciones más usadas para este comando son:
+					<code>$ ls [OPCIONES] [DIRECTORIO]</code>: Sirve para listar el contenido de un directorio.<br />Ej: <code>$ ls -la /home/usuario</code>, este ejemplo nos mostrará todos los ficheros que el usuario tuviera dentro de su directorio, mostrándonos también pues los permisos, el tamaño, el usuario y el grupo al que pertenece el fichero, incluyendo además todos los ficheros ocultos.<br />Las opciones más usadas para este comando son:
 					<ul>
 						<li class="slide">
 							<strong>-a, --all</strong>: Ls por defecto no muestra los ficheros y directorios ocultos (aquellos ficheros que empiecen por "."), con esta opción ls si los mostrará.
@@ -47,10 +47,10 @@
 							<strong>-l</strong>: Con esta opción, ls nos mostrará más información para cada fichero que liste, como pueden ser los permisos del fichero, a que grupo pertenece, el tamaño y la fecha en la que se creó.
 						</li>
 						<li class="slide">
-							<strong>-F, --file-type</strong>: Ls mostrará un caracter al final del fichero listado si este es, un Directorio (<code>/</code>), un Enlace simbolico (<code>@</code>), un Socket (<code>=</code>), un Pipe (<code>|</code>)
+							<strong>-F, --file-type</strong>: Ls mostrará un carácter al final del fichero listado si este es, un Directorio (<code>/</code>), un Enlace simbólico (<code>@</code>), un Socket (<code>=</code>), un Pipe (<code>|</code>)
 						</li>
 						<li class="slide">
-							<strong>-R, --recursive</strong>: El comando listará todos los elementos de un directorio, y si este contine directorios también mostrará el contenido de dichos directorios y asi hasta que no queden más directorios que mostrar.
+							<strong>-R, --recursive</strong>: El comando listará todos los elementos de un directorio, y si este contiene directorios también mostrará el contenido de dichos directorios y así hasta que no queden más directorios que mostrar.
 						</li>
 					</ul>
 				</li> 
@@ -67,11 +67,11 @@
 			<h2>Tratamiento de ficheros</h2>
 			<ul>
 				<li class="slide">
-					<code>$ cp [OPCIONES] origen destino</code>: Copia un fichero.<br />Ej. <code>$ cp .bashrc .basrc.bak</code>, este ejemplo copiaría el fichero .bashrc a .bashrc.bak, normalmente este comando de ejemplo se usa para hacer copias de seguridad antes de modificar un fichero de configuracion como .bashrc.<br />
+					<code>$ cp [OPCIONES] origen destino</code>: Copia un fichero.<br />Ej. <code>$ cp .bashrc .basrc.bak</code>, este ejemplo copiaría el fichero .bashrc a .bashrc.bak, normalmente este comando de ejemplo se usa para hacer copias de seguridad antes de modificar un fichero de configuración como .bashrc.<br />
 					Algunas opciones para este comando son:
 					<ul>
 						<li class="slide">
-							<strong>-f, --force</strong>: Esta opción sirve para que el comando sobreescriba automaticamente, si el fichero destino ya existe.
+							<strong>-f, --force</strong>: Esta opción sirve para que el comando sobrescriba automáticamente, si el fichero destino ya existe.
 						</li>
 						<li class="slide">
 							<strong>-p, --preserve</strong>: Cuando usamos el comando cp, el nuevo fichero va a tener como usuario dueño al usuario que ejecutó el comando cp. Con esta opción lo que conseguimos es que el nuevo fichero mantenga al usuario del fichero origen, siempre y cuando sea posible.
@@ -107,10 +107,10 @@
 					</ul> 
 				</li>	
 				<li class="slide">
-					<code>$ rmdir [OPCIONES] directorios</code>: Se utiliza para eliminar directorios vacios, en caso de que no esten vacios nos devolverá un error.<br>Ej. <code>$ rmdir ~/Download/app</code>, este ejemplo borrará el directorio "app", en caso de que dicho directorio no contenga nada.
+					<code>$ rmdir [OPCIONES] directorios</code>: Se utiliza para eliminar directorios vacíos, en caso de que no estén vacíos nos devolverá un error.<br>Ej. <code>$ rmdir ~/Download/app</code>, este ejemplo borrará el directorio "app", en caso de que dicho directorio no contenga nada.
 					<ul>
-						<li class="slide"><strong>--ignore-fail-on-non-empty</strong>: Los ficheros directorios que contengan algo, seguiran sin borrarse pero no nos mostrará el mensaje de error.</li>
-						<li class="slide"><strong>-p, --parents</strong>Hace que se borren todos los directorios de una peticion en caso de no estar vacios. Ej. <code>$ rmdir -p Downloads/app</code>, borrará el directorio app y luego el directorio Downloads, si están vacios.</li>
+						<li class="slide"><strong>--ignore-fail-on-non-empty</strong>: Los ficheros directorios que contengan algo, seguirán sin borrarse pero no nos mostrará el mensaje de error.</li>
+						<li class="slide"><strong>-p, --parents</strong>Hace que se borren todos los directorios de una petición en caso de no estar vacíos. Ej. <code>$ rmdir -p Downloads/app</code>, borrará el directorio app y luego el directorio Downloads, si están vacios.</li>
 					</ul>
 				</li>
 			</ul>
@@ -122,14 +122,14 @@
 		<section class="slide">
 			<h2>Lectura de ficheros</h2>
 			<ul>
-				<li class="slide"><code>$ cat(tac) [OPCIONES] fichero [FICHERO]</code>: Este comando se utiliza para concatenar ficheros, sin embargo,tambien se suele utilizar para visualizar fichero con un tamaño relativamente pequeño.<br>Ej. <code>$ cat .bashrc</code>, mostrará el contenido del fichero por pantalla.<br>Alguno de sus parametros mas usados son:
+				<li class="slide"><code>$ cat(tac) [OPCIONES] fichero [FICHERO]</code>: Este comando se utiliza para concatenar ficheros, sin embargo,también se suele utilizar para visualizar fichero con un tamaño relativamente pequeño.<br>Ej. <code>$ cat .bashrc</code>, mostrará el contenido del fichero por pantalla.<br>Alguno de sus parámetros mas usados son:
 					<ul>
-						<li class="slide"><code>-E, --show-ends</code>: Nos muestra el final de linea con el simbolo "$".</li>
-						<li class="slide"><code>-n, --number</code>: Nos mostrará los numeros de linea al inicio de cada una.</li>
+						<li class="slide"><code>-E, --show-ends</code>: Nos muestra el final de linea con el símbolo "$".</li>
+						<li class="slide"><code>-n, --number</code>: Nos mostrará los números de linea al inicio de cada una.</li>
 						<li class="slide"><code>-s --squeeze-blank</code>: Si existen más de una linea en blanco seguida, las juntará en una sola.</li>    
 					</ul>
 				</li>
-				<li class="slide"><code>$ less fichero</code>: Nos permite leer un fichero en la terminal de forma cómoda, moviendonos de pantalla en pantalla con el espacio, si pulsamos ESC podemos salir de less, volviendo a la terminal normal.</li>
+				<li class="slide"><code>$ less fichero</code>: Nos permite leer un fichero en la terminal de forma cómoda, moviéndonos de pantalla en pantalla con el espacio, si pulsamos ESC podemos salir de less, volviendo a la terminal normal.</li>
 				<li class="slide"><code>$ head [OPCIONES] fichero</code>: Este comando nos muestra las 10 primeras lineas de un fichero.<br>Estas son las opciones más comunes.
 					<ul>
 						<li class="slide"><code>-c num, --bytes=num</code>: Muestra el numero de Bytes en lugar de las 10 primeras lineas.</li>
@@ -147,9 +147,9 @@
 		<section class="slide">
 			<h2>Formato de ficheros</h2>
 			<ul>
-				<li class="slide"><code>$ expand/unexpand</code>: Estos parametros sirven para transformar tabulaciones en espacios, viceversa. Por defecto toma como tamño de tabulacion 8 espacios pero se puede cambiar usando la opción "-t tamaño"</li>
+				<li class="slide"><code>$ expand/unexpand</code>: Estos parametros sirven para transformar tabulaciones en espacios, viceversa. Por defecto toma como tamaño de tabulación 8 espacios pero se puede cambiar usando la opción "-t tamaño"</li>
 				<li class="slide"><code>$ uniq fichero</code>: Elimina lineas duplicadas, si estas están juntas.</li>
-				<li class="slide"><code>$ tr [OPCIONES] SET1 [SET2]</code>: Cambia los caracteres de la entrada estandar. Ej <code>$ tr ABC ac</code> Sustituirá la letra A por a, B por c y C por c. Si no indicamos el SET2 eliminará los caracteres del SET1.</li>
+				<li class="slide"><code>$ tr [OPCIONES] SET1 [SET2]</code>: Cambia los caracteres de la entrada estándar. Ej <code>$ tr ABC ac</code> Sustituirá la letra A por a, B por c y C por c. Si no indicamos el SET2 eliminará los caracteres del SET1.</li>
 				<li class="slide"><code>$ od fichero</code>: Muestra un fichero volcando el contenido en forma octal.</li>
 			</ul>
 		</section>
@@ -157,9 +157,9 @@
 		<section class="slide">
 			<h2>Transformación de ficheros</h2>
 			<ul>
-				<li class="slide"><code>$ split [OPCIONES] fichero patron</code>: Divide un fichero en en dos o mas ficheros, se usará el patrón como prefijo para nombrar a los ficheros resultantes</li>
-				<li class="slide"><code>$ sort [OPCIONES] fichero</code>: Ordena las lineas de un fichero, se puede usar la opcion "-k campo" para escoger cual es el campo para ordenar dicho fichero.</li>
-				<li class="slide"><code>$ join [OPCIONES] fichero fichero</code>: Combina dos fichero comparando el contenido dentro de ellos, por defecto se comparan los valores de las lineas separadas por espacios, aunque podemos escoger el caracter que queremos poner usando la opcion "-t caracter".</li>
+				<li class="slide"><code>$ split [OPCIONES] fichero patrón</code>: Divide un fichero en en dos o mas ficheros, se usará el patrón como prefijo para nombrar a los ficheros resultantes</li>
+				<li class="slide"><code>$ sort [OPCIONES] fichero</code>: Ordena las lineas de un fichero, se puede usar la opción "-k campo" para escoger cual es el campo para ordenar dicho fichero.</li>
+				<li class="slide"><code>$ join [OPCIONES] fichero fichero</code>: Combina dos fichero comparando el contenido dentro de ellos, por defecto se comparan los valores de las lineas separadas por espacios, aunque podemos escoger el carácter que queremos poner usando la opción "-t carácter".</li>
 				<li class="slide"><code>$ paste fichero fichero</code>: Fusiona linea a linea los ficheros ficheros que se le pasan como parametros.</li>
 			</ul>
 		</section>
@@ -168,12 +168,12 @@
 			<h2>Compresión</h2>
 			<ul>
 				<li class="slide">
-					<code>$ tar [OPCIONES] ficheros</code>: Este comando nos ayudará a comprimir y descomprimir ficheros en Linux. Este programa tienes muchas opciones, pero deberiamos quedarnos con las siguientes pues son las más usadas.
+					<code>$ tar [OPCIONES] ficheros</code>: Este comando nos ayudará a comprimir y descomprimir ficheros en Linux. Este programa tienes muchas opciones, pero deberíamos quedarnos con las siguientes pues son las más usadas.
 					<ul>
 						<li class="slide"><code>--create, c</code>: Crea un fichero.</li>
 						<li class="slide"><code>--extract, x</code>: Extrae un fichero.</li>
 						<li class="slide"><code>--file, f</code>: Utiliza el fichero o directorio como entrada.</li>
-						<li class="slide"><code>--verbose, v</code>: Lista todos los ficheros leidos o extraídos.</li>
+						<li class="slide"><code>--verbose, v</code>: Lista todos los ficheros leídos o extraídos.</li>
 						<li class="slide"><code>--gzip, z</code>: Procesa el fichero como gzip.</li>
 					</ul>
 				</li>
@@ -184,7 +184,7 @@
 			<h2>Ayuda</h2> 
 			<ul>
 				<li class="slide">
-					<code>$ man [OPCIONES] comando</code>: Este comando nos proporcionará la ayuda en Linux, aunque da por hecho muchas cosas nos ayudará a saber que opciones tiene cada programa del sistema, comando... El comando "man" presenta varias paginas por si fuera necesario separar la información de cada parametro.<br> Ej <code>$ man 8 modprobe</code>, Este ejemplo nos devolverá la pagina 8 de modprobe.<br>Las paginas de ayuda se dividen de la siguiente manera:
+					<code>$ man [OPCIONES] comando</code>: Este comando nos proporcionará la ayuda en Linux, aunque da por hecho muchas cosas nos ayudará a saber que opciones tiene cada programa del sistema, comando... El comando "man" presenta varias paginas por si fuera necesario separar la información de cada parámetro.<br> Ej <code>$ man 8 modprobe</code>, Este ejemplo nos devolverá la pagina 8 de modprobe.<br>Las paginas de ayuda se dividen de la siguiente manera:
 					<ol>
 						<li class="slide">1. Programas ejecutables y comandos de consola.</li>
 						<li class="slide">2. Llamadas al sistema.</li>
@@ -204,7 +204,7 @@
 			<h2>Otros comandos</h2>
 			<ul>
 				<li class="slide">
-					<code>$ touch [OPCIONES] fichero</code>: Sirve para cambiar la fecha de un fichero o crear un fichero vacío en caso de que no exista.<br>Ej. <code>$ touch empty</code>, crearia un fichero vacio llamado empty.<br>Las opciones para touch son:
+					<code>$ touch [OPCIONES] fichero</code>: Sirve para cambiar la fecha de un fichero o crear un fichero vacío en caso de que no exista.<br>Ej. <code>$ touch empty</code>, crearía un fichero vacío llamado empty.<br>Las opciones para touch son:
 					<ul>
 						<li class="slide"><strong>-a, --time=HORA</strong>: Hace que se cambie la hora de acceso pero no la de modificación.</li>
 						<li class="slide"><strong>-c, --no-create</strong>: Si el fichero no existe, no lo crea.</li>
@@ -212,9 +212,9 @@
 						<li class="slide"><strong>-r REFFILE, --reference REFFILE</strong>Cambia el tiempo del fichero tomando como referencia el tiempo del fichero que se pasa como REFFILE</li>
 					</ul>
 				</li>
-				<li class="slide"><code>$ dd</code>: Hacer copias de una particion bit a bit, se una "if=" para indicar el fichero de entrada, y "of=" para indicar el fichero de salida</li>
-				<li class="slide"><code>$ exec comando</code>: Sirve para ejecutar un programa, en lugar de crear un nuevo proceso para el programa utiliza el de la terminal que ejecutó exec, así cuando el programa finaliza, finaliza tambien la esa sesión de la terminal.</li>
-				<li class="slide"><code>$ time comando</code>: Lo utilizamos para cronometrar la ejecucion de un comando. Nos dará la información de tiempo total, que es lo que tardó en ejecutarse el programa, tiempo de CPU del usuario, y tiempo de CPU del sistema.</li>
+				<li class="slide"><code>$ dd</code>: Hacer copias de una partición bit a bit, se una "if=" para indicar el fichero de entrada, y "of=" para indicar el fichero de salida</li>
+				<li class="slide"><code>$ exec comando</code>: Sirve para ejecutar un programa, en lugar de crear un nuevo proceso para el programa utiliza el de la terminal que ejecutó exec, así cuando el programa finaliza, finaliza también la esa sesión de la terminal.</li>
+				<li class="slide"><code>$ time comando</code>: Lo utilizamos para cronometrar la ejecución de un comando. Nos dará la información de tiempo total, que es lo que tardó en ejecutarse el programa, tiempo de CPU del usuario, y tiempo de CPU del sistema.</li>
 				<li class="slide"><code>$ exit</code>: Cierra la sesión actual de la terminal.</li>
 			</ul>
 			<p class="deck-status">

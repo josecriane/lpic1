@@ -38,7 +38,7 @@
 				<li class="slide">
 					Existen 3 grandes clases de paquetes.
 					<ul>
-						<li class="slide"><strong>Tarball</strong>: Independiente de la distribución de Linux usada, suelen contener el codigo fuente en su interior para ser compilado.</li>
+						<li class="slide"><strong>Tarball</strong>: Independiente de la distribución de Linux usada, suelen contener el código fuente en su interior para ser compilado.</li>
 						<li class="slide"><strong>RPM</strong>: Paquetes propios de RedHat, y de las distribuciones derivadas de esta. </li>
 						<li class="slide"><strong>DEB</strong>: Paquetes de las distribuciones derivadas de Debian.</li>
 					</ul>
@@ -124,7 +124,7 @@
 					<pre>rpm [OPERACION] [OPCIONES][PAQUETE]</pre>
 				</li> 
 				<li class="slide">
-					Las operaciones más tipicas son:
+					Las operaciones más típicas son:
 					<ul>
 						<li class="slide"><code>-i</code>, instala el paquete.</li>
 						<li class="slide"><code>-U</code>, instala o actualiza el paquete si este ya existía en el sistema.</li>
@@ -134,9 +134,9 @@
 					</ul>
 				</li>
 				<li class="slide">
-					Y las opciones más utiles son:
+					Y las opciones más útiles son:
 					<ul>
-						<li class="slide"><code>--force</code>, fuerza la instalación del paquete, aunque sobreescriba otros.</li>
+						<li class="slide"><code>--force</code>, fuerza la instalación del paquete, aunque sobrescriba otros.</li>
 						<li class="slide"><code>-h</code>, muestra un proceso de avance usando <strong>#</strong>.</li>
 						<li class="slide"><code>--test</code>, comprueba las dependencias, antes de instalar un paquete.</li>
 					</ul>
@@ -160,7 +160,7 @@
 							<strong>Install</strong>: Instala un paquete 
 						</li>
 						<li class="slide">
-							<strong>update / upgrade</strong>: Actualiza un paquete, si no de le indica que paquete, actualizará todos los paquetes que no esten actualizados
+							<strong>update / upgrade</strong>: Actualiza un paquete, si no de le indica que paquete, actualizará todos los paquetes que no estén actualizados
 						</li>
 						<li class="slide">
 							<strong>check-update</strong>: Comprueba si hay actualizaciones, de los paquetes instalados. 
@@ -190,7 +190,7 @@
 			<h2>Configuración de RPM y YUM</h2>
 			<ul>
 				<li class="slide">
-					El fichero de configuración de rpm es<code>/usr/lib/rpm/rpmrc</code>, la configuración de este fichero se limita a optimizaciones a la hora de compilar el software con rpm, sin embargo, si queremos cambiar la configuración deberiamos usar, <code>/etc/rpmrc</code>, si queremos un configuración global, o <code>~/.rpmrc</code>, si queremos que la configuracion sea local para el usuario. Un ejemplo puede ser, <code>optflags: athlon -O2 -g -match=i686</code>
+					El fichero de configuración de rpm es<code>/usr/lib/rpm/rpmrc</code>, la configuración de este fichero se limita a optimizaciones a la hora de compilar el software con rpm, sin embargo, si queremos cambiar la configuración deberíamos usar, <code>/etc/rpmrc</code>, si queremos un configuración global, o <code>~/.rpmrc</code>, si queremos que la configuración sea local para el usuario. Un ejemplo puede ser, <code>optflags: athlon -O2 -g -match=i686</code>
 				</li>
 				<li class="slide">
 					La configuración de yum se encuentra en:
@@ -216,7 +216,7 @@
 					<pre>dpkg [OPCIONES] [ACCION] [PAQUETE]</pre>
 				</li> 
 				<li class="slide">
-					Es analogo a rpm pero para paquetes deb, su :
+					Es análogo a rpm pero para paquetes deb, su :
 					<ul>
 						<li class="slide"><code>--i</code>, instala el paquete.</li>
 						<li class="slide"><code>--configure</code>, los scripts de configuración de los paquetes .deb son mejores que los de rpm, y en caso de en una configuración manual del software hacemos que algo deje de funcionar, podemos conseguir que el software vuelva a su estado casi inicial.</li>
@@ -255,7 +255,7 @@
 							<strong>remove / purge</strong>: Elimina un paquete instalado, en el caso de <code>purge</code> eliminaríamos también la configuración del paquete.
 						</li>
 						<li class="slide">
-							<strong>source</strong>: Descarga el codigo fuente del paquete. 
+							<strong>source</strong>: Descarga el código fuente del paquete. 
 						</li>
 						<li class="slide">
 							<strong>clean /autoclean</strong>: Realiza una limpieza de todos aquellos paquetes que ya no son necesario, o ya no se pueden instalar. 
@@ -265,10 +265,10 @@
 				<li class="slide">
 					Las opciones más usadas son:
 					<ul>
-						<li class="slide"><strong>-d</strong>: Sirve para descargar, unicamente los paquetes y no instalarlos.</li>
+						<li class="slide"><strong>-d</strong>: Sirve para descargar, únicamente los paquetes y no instalarlos.</li>
 						<li class="slide"><strong>-f</strong>: Sirve para solucionar problemas con paquetes rotos, dependencias sin cumplir...</li>
 						<li class="slide"><strong>-y</strong>: Con esta opción conseguimos que no nos pregunte el instalador y asuma siempre que si</li>
-						<li class="slide"><strong>-no-upgrade</strong>: No actualiza, si ya hay una version anterior.</li>
+						<li class="slide"><strong>-no-upgrade</strong>: No actualiza, si ya hay una versión anterior.</li>
 					</ul>
 			</ul>
 			<p class="deck-status">
@@ -289,7 +289,7 @@
 							<strong>showpkg</strong>: Nos muestra la información  del paquete.
 						</li>
 						<li class="slide">
-							<strong>stats</strong>: Nos indica estadisticas sobre paquetes instalados, disponibles, dependencias...
+							<strong>stats</strong>: Nos indica estadísticas sobre paquetes instalados, disponibles, dependencias...
 						</li>
 						<li class="slide">
 							<strong>unmet</strong>: Sirve para encontrar dependencias no satisfechas. 
@@ -321,7 +321,7 @@
 			<h2>Configuración de DPKG y APT</h2>
 			<ul>
 				<li class="slide">
-					El fichero de configuración de dpkg es <code>/etc/dpkg/dpkg.cfg</code>, si queremos un configuración global, o <code>~/.dpkg.cfg</code>, si queremos que la configuracion sea local para el usuario.
+					El fichero de configuración de dpkg es <code>/etc/dpkg/dpkg.cfg</code>, si queremos un configuración global, o <code>~/.dpkg.cfg</code>, si queremos que la configuración sea local para el usuario.
 					<ul>
 						<li class="slide">Las opciones de este fichero, son las que pudimos ver en el apartado dpkg, pero sin las --</li>
 					</ul>
@@ -330,10 +330,10 @@
 					La configuración de apt se encuentra en:
 					<ul>
 						<li class="slide">
-							<code>/etc/apt/apt.conf</code>, debido a la cantida de parametros de este fichero podemos ver las opciones de este fichero usando <code>man apt.conf</code>
+							<code>/etc/apt/apt.conf</code>, debido a la cantidad de parámetros de este fichero podemos ver las opciones de este fichero usando <code>man apt.conf</code>
 						</li>
 						<li class="slide">
-							<code>/etc/apt/sources.list</code>, este es el fichero en el que configuraremos los origenes de software para nuestro sistema.
+							<code>/etc/apt/sources.list</code>, este es el fichero en el que configuraremos los orígenes de software para nuestro sistema.
 						</li>
 					</ul>
 				</li>
@@ -367,7 +367,7 @@
 			<h2>Problemas</h2>
 			<ul>
 				<li class="slide">
-					Los problemas más tipicos son los siguiente:
+					Los problemas más típicos son los siguiente:
 					<ul>
 						<li class="slide"><strong>Librerías que faltan</strong>: Falta un paquete en el sistema, suele pasar cuando falta alguna dependencia.</li>
 						<li class="slide"><strong>Librerías incompatibles</strong>: Se necesita una versión de una librería que no es compatible.</li>
@@ -384,8 +384,8 @@
 					<ul>
 						<li class="slide"><strong>Forzar la instalación</strong>: Ignoramos el problema, y forzamos la instalación del paquete, es una opción arriesgada pero si fallan las dependencias puede ser la única solución.</li>
 						<li class="slide"><strong>Actualizar el paquete</strong> del que depende, en ocasiones esto no es posible o puede provocar inestabilidad en el sistema.</li>
-						<li class="slide"><strong>Recompilar el paquete problematico</strong>, si el nombre sabemos que cumplimos las dependencias, pero por el nombre de las mismas no es el mismo, suele ser una buena practica, además podremos hacer que el software sea más eficiente.</li>
-						<li class="slide"><strong>Localizar otra version</strong>, tenemos que buscar otra versión del software que queremos instalar, si no nos importa demasiado la versión del software puede ser una buena idea.</li>
+						<li class="slide"><strong>Recompilar el paquete problemático</strong>, si el nombre sabemos que cumplimos las dependencias, pero por el nombre de las mismas no es el mismo, suele ser una buena practica, además podremos hacer que el software sea más eficiente.</li>
+						<li class="slide"><strong>Localizar otra versión</strong>, tenemos que buscar otra versión del software que queremos instalar, si no nos importa demasiado la versión del software puede ser una buena idea.</li>
 					</ul>
 				</li>
 			</ul>
@@ -395,18 +395,18 @@
 		</section>
 
 		<section class="slide">
-			<h2>Librerias Compartidos</h2>
+			<h2>Librerías Compartidos</h2>
 			<ul>
 				<li class="slide">
-					Los programas en linux suelen utilizar librerías con código reutilizable, que además de ayudar a los programadores, optimizan el espacio en el disco duro.
-					Esto permite reducir el tamaño del programa, ya que en lugar de tener compilado todo el codigo con el programa algunas rutinas, se derivan a la libreria compilada. Permitiendo además que si hay varios programas en ejecución se pueda compartir la libreria entre todos los que la usen.
+					Los programas en Linux suelen utilizar librerías con código reutilizable, que además de ayudar a los programadores, optimizan el espacio en el disco duro.
+					Esto permite reducir el tamaño del programa, ya que en lugar de tener compilado todo el código con el programa algunas rutinas, se derivan a la librería compilada. Permitiendo además que si hay varios programas en ejecución se pueda compartir la librería entre todos los que la usen.
 				</li>
 				<li class="slide">
 					Como no todo podía ser bueno, las bibliotecas compartidas presentan una serie de problemas.
 					<ul>
-						<li class="slide">Los cambios en algunas librerías, pueden ser incompatibles con alguno de los programas que las usan, sin embargo, esto no tiene porque ser un problema ya que linux mantiene la numeración de las librerías para que pueda haber mas de una version de la misma librería al mismo tiempo.</li>
+						<li class="slide">Los cambios en algunas librerías, pueden ser incompatibles con alguno de los programas que las usan, sin embargo, esto no tiene porque ser un problema ya que Linux mantiene la numeración de las librerías para que pueda haber mas de una versión de la misma librería al mismo tiempo.</li>
 						<li class="slide">Los programas tienen que saber donde encontrar las librerías compartidas, solucionar este problema normalmente habrá que ir a la configuración del programa o cambiar alguna variable de entorno.</li>
-						<li class="slide">Si una librería se sobreescribe, o si se elimina accidentalmente, puede provocar errores graves en el sistema.</li>
+						<li class="slide">Si una librería se sobrescribe, o si se elimina accidentalmente, puede provocar errores graves en el sistema.</li>
 					</ul>
 				</li>
 			</ul>
@@ -416,13 +416,13 @@
 		</section>
 
 		<section class="slide">
-			<h2>Rutas Librerias Compartidos</h2>
+			<h2>Rutas Librerías Compartidos</h2>
 			<ul>
 				<li class="slide">
-					Para indicarle al software donde están las librerias compartidas linux usa el fichero <code>/etc/ld.so.conf/</code>, donde cada linea presenta una ruta donde encontrar librerías compartidas, sin embargo, este fichero suele incluir <code>include /etc/ld.so.conf.d/*.conf</code>, que indica que cargue todos los ficheros <code>.conf</code> del directorio. Solo es necesario cambiar esta información en casos muy concretos, ya que el los propios paquete suelen colocar las librerías en los sitios habituales para este fin. Si aun así decidimos cambiar la configuracion deberemos lanzar <code>ldconfig</code> para que los cambios se efectuen sin reiniciar el equipo.
+					Para indicarle al software donde están las librerías compartidas Linux usa el fichero <code>/etc/ld.so.conf/</code>, donde cada linea presenta una ruta donde encontrar librerías compartidas, sin embargo, este fichero suele incluir <code>include /etc/ld.so.conf.d/*.conf</code>, que indica que cargue todos los ficheros <code>.conf</code> del directorio. Solo es necesario cambiar esta información en casos muy concretos, ya que el los propios paquete suelen colocar las librerías en los sitios habituales para este fin. Si aun así decidimos cambiar la configuración deberemos lanzar <code>ldconfig</code> para que los cambios se efectúen sin reiniciar el equipo.
 				</li>
 				<li class="slide">
-					En ocasiones nos interesa cambiar la ruta de forma temporal, para ello podemos usar la variable de entorno <code>LD_LIBRARY_PATH</code>, indicandole la ruta en la que tenemos esa librería. Esto tendrá preferencia sobre las librerías que haya en el sistema. No requiere el uso de <code>ldconfig</code>.
+					En ocasiones nos interesa cambiar la ruta de forma temporal, para ello podemos usar la variable de entorno <code>LD_LIBRARY_PATH</code>, indicándole la ruta en la que tenemos esa librería. Esto tendrá preferencia sobre las librerías que haya en el sistema. No requiere el uso de <code>ldconfig</code>.
 				</li>
 				<li class="slide">
 					Si queremos mostrar las librerías que usa un determinado software podemos hacerlo con <code>ldd</code>

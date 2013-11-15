@@ -74,7 +74,7 @@ srwxr-xr-x  1 sito sito   89 nov  1 16:38 virt_1113
 					Con este comando podremos cambiar el propietario de un fichero.<br>Ej. <code>$ chown sito:adm .ficheroDeMarce</code>, esto cambiará el propietario y el grupo del fichero "ficheroDeMarce" haciendo que el nuevo propietario sea sito y el grupo sea adm
 				</li> 
 				<li class="slide">
-					<code>chgrp [OPCIONES] grupo nombre_del_fichero</code>, este comando sería el que usaríamos si solo quisieramos cambiar el grupo del fichero.
+					<code>chgrp [OPCIONES] grupo nombre_del_fichero</code>, este comando sería el que usaríamos si solo quisiéramos cambiar el grupo del fichero.
 				</li>
 				<li class="slide">
 					<strong>-R, --recursive</strong>, tanto chown y chgrp admiten este comando para hacer los cambios de forma recursiva.
@@ -94,10 +94,10 @@ srwxr-xr-x  1 sito sito   89 nov  1 16:38 virt_1113
 				<li class="slide">
 					Tenemos 10 caracteres, que podemos separar de la siguiente manera:
 					<ul>
-						<li class="slide">El primer caracter, <code>-</code>, indica el tipo de fichero, del que hablaremos un poco más adelante.</li>
+						<li class="slide">El primer carácter, <code>-</code>, indica el tipo de fichero, del que hablaremos un poco más adelante.</li>
 						<li class="slide">Los siguientes 3 caracteres, representan los permisos de usuario.</li>
 						<li class="slide">Los 3 caracteres del medio, representan los permisos del grupo.</li>
-						<li class="slide">Los ultimos 3 caracteres, representan los permisos del resto.</li>
+						<li class="slide">Los últimos 3 caracteres, representan los permisos del resto.</li>
 					</ul>
 				</li> 
 				<li class="slide">
@@ -126,7 +126,7 @@ srwxr-xr-x  1 sito sito   89 nov  1 16:38 virt_1113
 					</ul>
 				</li> 
 				<li class="slide">
-					Si un fichero, tiene más de un unico permiso, lo único que tenemos que hacer es sumar su valor. Algunos ejemplos tipicos:
+					Si un fichero, tiene más de un único permiso, lo único que tenemos que hacer es sumar su valor. Algunos ejemplos típicos:
 					<ul>
 						<li class="slide"><code>rw-</code>, Será 4 + 2, o lo que es lo mismo 6, 110 en binario</li>
 						<li class="slide"><code>r-x</code>, Será 4 + 1, es decir, 5, 101 en binario.</li>
@@ -135,10 +135,10 @@ srwxr-xr-x  1 sito sito   89 nov  1 16:38 virt_1113
 					</ul>
 				</li>
 				<li class="slide">
-					Ahora solo tendremos que juntar, los permisos de usuario, grupo y otros para poder definir los permisos finales del fichero, a este tipo de nomenclaruta se la denomina octal
+					Ahora solo tendremos que juntar, los permisos de usuario, grupo y otros para poder definir los permisos finales del fichero, a este tipo de nomenclatura se la denomina octal
 					<ul>
 						<li class="slide"><code>777</code>, representa que todo el mundo puede leer, escribir y ejecutar el fichero</li>
-						<li class="slide"><code>700</code>, solo el propietario puede leer, escribir y ejuectar el fichero.</li>
+						<li class="slide"><code>700</code>, solo el propietario puede leer, escribir y ejecutar el fichero.</li>
 						<li class="slide"><code>640</code>, el propietario puede leer y escribir en el fichero y el grupo solo puede leer.</li>
 						<li class="slide"><code>644</code>, todo el mundo puede leer y el propietario puede a mayores escribir en el fichero.</li>
 					</ul>
@@ -159,13 +159,13 @@ srwxr-xr-x  1 sito sito   89 nov  1 16:38 virt_1113
 					El bit set user ID, <code>SUID</code>, se usa para que cuando un fichero es ejecutado, en lugar de que se ejecute con los permisos del usuario que ejecuta el fichero, lo haga con los permisos del propietario del fichero, este bit se muestra en la consola sustituyendo el "x" del usuario por una "s". Si un fichero del usuario root tiene el bit SUID activado, cuando se ejecute lo hará con permisos de root.
 				</li>
 				<li class="slide">
-					El bit set group ID, <code>SGID</code>, muy similar al bit SUID, cuando se define este bit en un directorio proboca que los nuevos ficheros o subdirectorios creados dentro de este directorio heredarán el grupo del propietario del directorio, este bit se muestra en la consola sustituyendo el "x" del grupo por una "s".
+					El bit set group ID, <code>SGID</code>, muy similar al bit SUID, cuando se define este bit en un directorio provoca que los nuevos ficheros o subdirectorios creados dentro de este directorio heredarán el grupo del propietario del directorio, este bit se muestra en la consola sustituyendo el "x" del grupo por una "s".
 				</li>
 				<li class="slide">
 					El sticky bit, se utiliza para que un fichero no pueda ser eliminado por los usuarios que no son sus propietarios. Cuando está presente en un directorio solo el propietario del directorio y el usuario root puede borrar esos ficheros. Este bit se representa con una "t" en lugar de la "x" en el apartado de permisos de otros.
 				</li>
 				<li class="slide">
-					¡¡¡Cuidado!!!, es el bit SUID, puede provocar graves problemas de seguridad, sobretodo si el propietario del fichero es el usuario root.<br>Actualmente, exiten las ACL que es una nueva y más completa manera de gestionar los permisos, además sigue siendo compatible con el sistema de permisos de siempre.
+					¡¡¡Cuidado!!!, es el bit SUID, puede provocar graves problemas de seguridad, sobretodo si el propietario del fichero es el usuario root.<br>Actualmente, existen las ACL que es una nueva y más completa manera de gestionar los permisos, además sigue siendo compatible con el sistema de permisos de siempre.
 				</li>
 			</ul>
 			<p class="deck-status">
@@ -182,10 +182,10 @@ srwxr-xr-x  1 sito sito   89 nov  1 16:38 virt_1113
 					Al igual que chown y chgrp, este comando es compatible con la opción -R o --recursive.
 				</li>
 				<li class="slide">
-					Utilizamos nomenclatura octal para definir los permisos, ej. <code>$ chmod 644 .bashrc</code>, en este ejemplo estamos poniendoles a .bashrc los permisos de 644.
+					Utilizamos nomenclatura octal para definir los permisos, ej. <code>$ chmod 644 .bashrc</code>, en este ejemplo estamos poniéndoles a .bashrc los permisos de 644.
 				</li>
 				<li class="slide">
-					Podemos añadir los bits especiales añadiendo un nuevo trio de bit al inicio, siendo 4 SUID, 2 SGID, y 1 sticky bit.<br>¿Qué permisos tendrá un fichero si hacemos chmod 6755?
+					Podemos añadir los bits especiales añadiendo un nuevo trío de bit al inicio, siendo 4 SUID, 2 SGID, y 1 sticky bit.<br>¿Qué permisos tendrá un fichero si hacemos chmod 6755?
 				</li>
 			</ul>
 			<p class="deck-status">
@@ -201,7 +201,7 @@ srwxr-xr-x  1 sito sito   89 nov  1 16:38 virt_1113
 				<ul>
 					<li class="slide"><code>-</code>: Fichero normal, puede ser un fichero de texto o un binario, una imagen...</li>
 					<li class="slide"><code>d</code>: Se trata de un directorio</li>
-					<li class="slide"><code>l</code>: Enlace simbolico</li>
+					<li class="slide"><code>l</code>: Enlace simbólico</li>
 					<li class="slide"><code>p</code>: Un pipe con nombre, se suele usar para que varios programas se comuniquen entre si.</li>
 					<li class="slide"><code>s</code>: Socket, similar al pipe, pero permite los enlaces bidireccionales.</li>
 					<li class="slide"><code>b</code>: Dispositivo de bloque. Generalmente vinculado a un dispositivo hardware</li>
