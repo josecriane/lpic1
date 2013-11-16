@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=1024, user-scalable=no">
+
+	<title>LPIC Slides</title>
+	
+	<!-- Required stylesheet -->
+	<link rel="stylesheet" href="core/deck.core.css">
+	<link rel="stylesheet" href="extensions/status/deck.status.css">
+	<link rel="stylesheet" href="extensions/scale/deck.scale.css">
+	<link rel="stylesheet" href="extensions/hash/deck.hash.css">
+
+	<link rel="stylesheet" href="themes/style/lpic_slides.css">
+	<link rel="stylesheet" href="themes/transition/horizontal-slide.css">
+	
+	<!-- Required Modernizr file -->
+	<script src="modernizr.custom.js"></script>
+</head>
+<body>
+
+	<header>
+		<span><a href="http://josecriane.com/lpic/">Inicio</a></span>
+	</header>
+
+<!-- Begin slides. Just make elements with a class of slide. -->
+	<article class="deck-container">
+		<section class="slide">
+			<h1>Gestión de usuarios [y grupos.]</h1>
+		</section>
+
+		<section class="slide">
+			<h2>Añadir usuarios</h2>
+			<pre>useradd [OPCIONES] nombre-usuario</pre>
+			<ul>
+				<li class="slide">
+					Usar <code>usedadd</code> es la forma más común de añadir usuarios al sistema, entre las opciones que podemos usar para cambiar parametros del sistema, tenemos:
+				</li>
+				<li class="slide">
+					<ul>
+						<li class="slide"><strong>-d directorio</strong>: Usaremos esta opción para establecer o cambiar el home por defecto del usuario.</li>
+						<li class="slide"><strong>-e fecha-expiracion</strong>: Es la fecha en la que la cuenta expira. El formato es YYYY-MM-DD, si no podemos este parametro las cuentas no expiran.</li>
+						<li class="slide"><strong>-f días-inactivo</strong>: Si el usuario pasa esos días sin conectarse la cuenta expirará automaticamente. Por defecto el valor es -1 que implica que no puede expirar por no loguearse.</li>
+						<li class="slide"><strong>-g grupo</strong>: Establece el grupo por defecto.</li>
+						<li class="slide"><strong>-G grupo [, ....]</strong>: Asigana al usuario otros grupos.</li>
+						<li class="slide"><strong>-p contraseña</strong>: Envia la contraseña directamente al fichero /etc/shadow sin modificarse.</li>
+						<li class="slide"><strong>-s shell</strong>: Establece la shell por defecto, que puede ser cualquier ejecutable.</li>
+						<li class="slide"><strong>-u UID</strong>: Crea al usuario con ese UID</li>
+						<li class="slide"><strong>-n</strong>: No creamos el grupo del usuario.</li>
+					</ul>
+				</li> 
+			</ul>
+			<p class="deck-status">
+				<span class="deck-status-current"></span>/<span class="deck-status-total"></span>
+			</p>
+		</section>
+
+		<section class="slide">
+			<h2>Password del usuario.</h2>
+			<pre>passwd [OPCIONES] [Usuario]</pre>
+			<ul>
+				<li class="slide">
+					Se recomienda, en cualquier sistema, que cada cierto tiempo se cambie la contraseña del usuario, para hacer esto nosotros contamos con el comando <code>passwd</code>. Las opciones de este comando son:
+					<ul>
+						<li class="slide"><strong>-k</strong>: Actualiza cuentas expiradas.</li>
+						<li class="slide"><strong>-l</strong>: Bloquea una cuenta de usuario.</li>
+						<li class="slide"><strong>-u</strong>: Desbloquea una cuenta de usuario</li>
+						<li class="slide"><strong>-d</strong>: Borra la contraseña de la cuenta.</li>
+					</ul>
+				</li>
+				<li class="slide">Si un usuario quiere cambiar su contraseña, passwd le preguntará su contraseña actual. Sin embargo, el usuario root, puede cambiar la contraseña de otro usuario sin saber la contraseña actual.</li>
+			</ul>
+			<p class="deck-status">
+				<span class="deck-status-current"></span>/<span class="deck-status-total"></span>
+			</p>
+		</section>
+
+		<section class="slide">
+			<h2>Modificar un usuario.</h2>
+			<pre>usermod [OPCIONES] usuario</pre>
+			<ul>
+				<li>
+					Este comando funciona de forma similar a como lo hace <code>useradd</code>, con la diferencia de que en lugar de crear un usuario lo modifica, además tiene un par de opciones que ayudan a la modificacion del usuario.
+					<ul>
+						<li class="slide"><strong>-m</strong>: Usada con el <code>-d</code>, además de asignar un nuevo directorio home, esta opción movera los ficheros que haya en el directorio home anterior al nuevo directorio.</li>
+						<li class="slide"><strong>-l nuevo-nombre</strong>: Cambia el nombre del usuario de.</li>
+						<li class="slide"><strong>-L / -U</strong>: Exactamente igual que las opciones -L y -U de <code>passwd</code></li>
+					</ul>
+				</li> 
+				<li class="slide">Hay que tener en cuenta que si cambiamos el UID del usuario, es posible que sea necesario ejecuar un <code>chown</code> para devolver la pertenencia del fichero al usuario.</li>
+			</ul>
+			<pre class="slide">chage usuario</pre>
+			<ul>
+				<li>
+					Este comando se utiliza para tener más control sobre la expiración de usuarios, nos centraremos solo en la expiración por contraseña, ya que las otras opciones podemos cubrirlas con <code>usermod</code>, o <code>useradd</code>.
+					<ul>
+						<li class="slide"><strong>-l</strong>: Muestra la información de la expiración de la cuenta.</li>
+						<li class="slide"><strong>-m días</strong>: Indica cada cuanto el usuario puede cambiar la contraseña.</li>
+						<li class="slide"><strong>-M días</strong>: Es el numero maximo de dias que pueden pasar sin que el usuario cambie la contraseña.</li>
+						<li class="slide"><strong>-W días</strong>: Define el numero de días en los que se avisará al usuario de que la cuenta esta a punto de expirar</li>
+					</ul>
+				</li> 
+				<li class="slide">Hay que tener en cuenta que si cambiamos el UID del usuario, es posible que sea necesario ejecuar un <code>chown</code> para devolver la pertenencia del fichero al usuario.</li>
+			</ul>
+			<p class="slide">Una vez cambiado el SO, debemos ejecutar <code>lilo</code>, para que lilo se reinstale en el MBR</p>
+			<p class="deck-status">
+				<span class="deck-status-current"></span>/<span class="deck-status-total"></span>
+			</p>
+		</section>
+
+		<section class="slide">
+			<h2>Eliminar usuarios.</h2>
+			<pre>userdel [OPCIONES] usuario.</pre>
+			<ul>
+				<li>
+					Usamos este comando para eliminar usuarios del sistema.
+					<ul>
+						<li class="slide"><strong>-r, --remove</strong>: Elimina tanto la cola de correos del usuario, como el directorio home.</li>
+						<li class="slide"><strong>-f, --force</strong>: Borra al usuario aunque esté activo en el sistema, y el directorio home aunque haya otro usuario que use el mismo.</li>
+						<li class="slide"><strong>-h, --help</strong>: Obtiene la ayuda del comando.</li>
+					</ul>
+				</li>
+			</ul>
+			<p class="deck-status">
+				<span class="deck-status-current"></span>/<span class="deck-status-total"></span>
+			</p>
+		</section>
+
+		
+
+
+	</article>
+<!-- End slides. -->
+
+<!-- Required JS files. -->
+<script src="jquery-1.7.2.min.js"></script>
+<script src="core/deck.core.js"></script>
+<script src="extensions/hash/deck.hash.js"></script>
+<script src="extensions/status/deck.status.js"></script>
+<script src="extensions/scale/deck.scale.js"></script>
+
+<!-- Initialize the deck. You can put this in an external file if desired. -->
+<script>
+	$(function() {
+		$.deck('.slide');
+	});
+</script>
+</body>
+</html>

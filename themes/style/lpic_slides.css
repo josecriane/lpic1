@@ -273,6 +273,10 @@ ol{
   transition: all .3s ease-out;
 }
 
+#page2 {
+  counter-reset: li 6;
+}
+
 header{
   background-color: #838383;
   margin: auto;
