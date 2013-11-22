@@ -36,12 +36,12 @@
 			<pre>uname [OPCIONES]</pre>
 			<ul>
 				<li class="slide">
-					El kernel es el nucleo de linux, este proceso no se puede administrar como el resto de programas y comandos, pero esto no nos impide obtener información del kernel, para ello usamos el comando <code>uname</code>
+					El kernel es el núcleo de Linux, este proceso no se puede administrar como el resto de programas y comandos, pero esto no nos impide obtener información del kernel, para ello usamos el comando <code>uname</code>
 					<ul>
 						<li class="slide"><strong>-n</strong>: Esta opción nos sirve para saber el nombre de la maquina.</li>
-						<li class="slide"><strong>-s</strong>: Muestra el nombre del Kernel, normalmente la respuesta a esta parametro será Linux</li>
-						<li class="slide"><strong>-v</strong>: Versión del kernel, con la hora y fecha de compilacion</li>
-						<li class="slide"><strong>-r</strong>: Numero de version del kernel</li>
+						<li class="slide"><strong>-s</strong>: Muestra el nombre del Kernel, normalmente la respuesta a esta parámetro será Linux</li>
+						<li class="slide"><strong>-v</strong>: Versión del kernel, con la hora y fecha de compilación</li>
+						<li class="slide"><strong>-r</strong>: Numero de versión del kernel</li>
 						<li class="slide"><strong>-m, -i</strong>: información sobre la plataforma de la maquina en la que se ejecuta el sistema.</li>
 						<li class="slide"><strong>-p</strong>: Devuelve información sobre el procesador, aunque en muchas ocasiones devuelve unknown.</li>
 						<li class="slide"><strong>-o</strong>: El nombre del sistema operativo.</li>
@@ -59,14 +59,14 @@
 			<pre>ps [OPCIONES]</pre>
 			<ul>
 				<li class="slide">
-					Se trata de uno de los comandos mas importantes en la administracion de sistemas Linux, ya que muestra el estado de los procesos del sistema. Y sirve para monitorizar el sistema.<ul>
+					Se trata de uno de los comandos mas importantes en la administración de sistemas Linux, ya que muestra el estado de los procesos del sistema. Y sirve para monitorizar el sistema.<ul>
 						<li class="slide"><strong>--help</strong>: Nos resumirá las opciones del comando.</li>
 						<li class="slide"><strong>a</strong>: Muestra todos los procesos con tty.</li>
 						<li class="slide"><strong>x</strong>: Muestra los procesos sin tty</li>
 						<li class="slide"><strong>-A, .e</strong>: Muestra todos los procesos</li>
-						<li class="slide"><strong>f</strong>: Nos mostrará la lista como si fuera un arbol</li>
+						<li class="slide"><strong>f</strong>: Nos mostrará la lista como si fuera un árbol</li>
 						<li class="slide"><strong>-u/-U usuario</strong>: Listará los procesos de ese usuario.</li>
-						<li class="slide"><strong>w</strong>: Hace que ps no trunque la salida al tamaño del xterm, suele ser util, si enviamos la salida a un fichero.</li>
+						<li class="slide"><strong>w</strong>: Hace que ps no trunque la salida al tamaño del xterm, suele ser útil, si enviamos la salida a un fichero.</li>
 					</ul>
 				</li>
 			</ul>
@@ -86,7 +86,7 @@
 						<li class="slide"><strong>PPID</strong>: PID del proceso padre.</li>
 						<li class="slide"><strong>TTY</strong>: Consola desde la que se ejecuta el proceso</li>
 						<li class="slide"><strong>TIME, %CPU</strong>: Tiempo de CPU usado por el proceso en el momento de ejecutar el comando ps</li>
-						<li class="slide"><strong>NI</strong>: Muestra el codigo de prioridad.</li>
+						<li class="slide"><strong>NI</strong>: Muestra el código de prioridad.</li>
 						<li class="slide"><strong>%MEM</strong>: Porcentaje de memoria usado por el proceso en el momento de ejecutar el comando ps</li>
 						<li class="slide"><strong>COMMAND</strong>: Comando ejecutado</li>
 					</ul>
@@ -98,11 +98,11 @@
 			<h2>Top</h2>
 			<ul>
 				<li class="slide">
-					Se trata de una variante de ps, pero de forma dinamica.
+					Se trata de una variante de ps, pero de forma dinámica.
 					<ul>
 						<li class="slide"><strong>-d retardo</strong>: Esta opción nos permite especificar el tiempo en el que se actualiza top, en segundos, por defecto este tiempo son 5 segundos.</li>
 						<li class="slide"><strong>-p pid</strong>: Monitoriza ese pid, esta opción se puede repetir hasta 20 veces.</li>
-						<li class="slide"><strong>-n iteraciones</strong>: Numero de veces que se repetira el refresco de top antes de cerrarse.</li>
+						<li class="slide"><strong>-n iteraciones</strong>: Numero de veces que se repetirá el refresco de top antes de cerrarse.</li>
 					</ul>
 				</li>
 				<li class="slide">
@@ -122,7 +122,7 @@
 		<section class="slide">
 			<h2>Destruir procesos</h2>
 			<ul>
-				<li class="slide">Para este proposito disponemos de dos comandos, kill y killall. Estos comandos lo que hacen es enviar un señal al proceso.</li>
+				<li class="slide">Para este propósito disponemos de dos comandos, kill y killall. Estos comandos lo que hacen es enviar un señal al proceso.</li>
 				<li class="slide">
 					<pre>kill -s señal pid</pre>
 					<ul>
@@ -136,7 +136,7 @@
 					<ul>
 						<li class="slide"><strong>Funciona de forma similar a kill pero en lugar de pid usa el nombre del proceso</li>
 						<li class="slide"><strong>-9</strong>: termina un proceso.</li>
-						<li class="slide"><strong>-i</strong>: Si se ejecuta el comando con el usuario root, deberiamos usar -i para evitar terminar procesos que no queremos.</li>
+						<li class="slide"><strong>-i</strong>: Si se ejecuta el comando con el usuario root, deberíamos usar -i para evitar terminar procesos que no queremos.</li>
 					</ul>
 				</li>
 			</ul>

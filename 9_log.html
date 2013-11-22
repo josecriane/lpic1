@@ -28,7 +28,7 @@
 <!-- Begin slides. Just make elements with a class of slide. -->
 	<article class="deck-container">
 		<section class="slide">
-			<h1>Gestion de logs</h1>
+			<h1>Gestión de logs</h1>
 		</section>
 
 		<section class="slide">
@@ -36,7 +36,7 @@
 			<ul>
 				<li class="slide">Syslogd es el demonio que se encarga de gestionar los logs de nuestro sistema.</li>
 				<li class="slide">En <code>/etc/syslog.conf</code> o <code>/etc/rsyslog.conf</code>podemos encontrar su configuración</li>
-				<li class="slide">La configuración de estos ficheros es similar a <code>recurso.prioridad accion</code>, la accion puede ser un fichero de destino, o una consola.</li>
+				<li class="slide">La configuración de estos ficheros es similar a <code>recurso.prioridad acción</code>, la acción puede ser un fichero de destino, o una consola.</li>
 				<li class="slide">Los recurso suelen ser, auth, authpriv, cron, daemon, kern, lpr, mail, mark, user y syslog</li>
 				<li class="slide">Y las prioridades de menor a mayor, son debug, info, notice, warning, err, crit, alert, emerg.</li>
 			</ul>
@@ -52,7 +52,7 @@
 				<li class="slide">Normalmente las lineas tendrán la siguiente pinta. <code>mail.err /var/log/mail.err</code></li>
 				<li class="slide">Esto significa que todos los mensajes de mail con prioridad de error o de mayor irán al fichero /var/log/mail.err</li>
 				<li class="slide">Antes del punto podemos separar diferentes recursos con comas, para que sean todos los que aparecen, es decir, <code>auth,authpriv.emerg</code>, serán todos los mensajes de auth y authpriv con prioridad emerg</li>
-				<li class="slide">Si quisieramos englobar todos los recursos podemos usar <code>*</code></li>
+				<li class="slide">Si quisiéramos englobar todos los recursos podemos usar <code>*</code></li>
 				<li class="slide">Por último, si usamos ; podemos definir diferentes configuraciones para la misma accion.</li>
 			</ul>
 			<p class="deck-status">
@@ -66,7 +66,7 @@
 				Ya sabemos como funcionan los recursos, ahora nos toca saber que hacer con las prioridades.
 				<li class="slide">Vamos a usar el mismo ejemplo que en el apartado anterior <code>mail.err /var/log/mail.err</code></li>
 				<li class="slide">Al igual que antes, esto significa que todos los mensajes de mail con prioridad de error o de mayor irán al fichero /var/log/mail.err</li>
-				<li class="slide">Si quisieramos que ese fichero solo fuera para los mensajes de error, y no para los de error y los de mayor prioridad, deberiamos usar <code>.=err</code></li>
+				<li class="slide">Si quisiéramos que ese fichero solo fuera para los mensajes de error, y no para los de error y los de mayor prioridad, deberíamos usar <code>.=err</code></li>
 				<li class="slide">En ocasiones nos interesará que la prioridad sea al revés, es decir, err o menor prioridad para ello deberíamos poner, <code>.!err</code></li>
 				<li class="slide">Por último, si usamos <code>*</code> se referirá a todas las prioridades.</li>
 			</ul>
@@ -75,9 +75,9 @@
 		<section class="slide">
 			<h2>Consideraciones</h2>
 			<ul>
-				<li class="slide">No es bueno usar <code>*.*</code> ya que la información de puede que se genere mucha información irrelevante, que dificultaria el analisis de los logs</li>
-				<li class="slide">Los mensajes de emerg, tambien conocido como panic, son muy graves y normalmente implican problemas dificilmente reparables.</li>
-				<li class="slide">Suele ser buena idea separar las prioriadas de los recursos en ficheros distintos, ya que facilitará la localización de errores y su posible auditoría.</li>
+				<li class="slide">No es bueno usar <code>*.*</code> ya que la información de puede que se genere mucha información irrelevante, que dificultaría el análisis de los logs</li>
+				<li class="slide">Los mensajes de emerg, también conocido como panic, son muy graves y normalmente implican problemas difícilmente reparables.</li>
+				<li class="slide">Suele ser buena idea separar las prioridades de los recursos en ficheros distintos, ya que facilitará la localización de errores y su posible auditoría.</li>
 				<li class="slide">Suele emplearse la <code>@nombre/dominio</code> en la acción para enviar los logs a un servidor remoto, es necesario que ese servidor este configurado para tal fin.</li>
 			</ul>
 		</section>
@@ -87,20 +87,20 @@
 			<pre>logger [OPCIONES] [mensaje]</pre>
 			<ul>
 				<li class="slide">
-					Este comando nos permitira enviar mensajes a syslog, como si de los recursos se tratase, asi podremos probar que funciona perfectamente, o para ser utilizado en scripts
+					Este comando nos permitirá enviar mensajes a syslog, como si de los recursos se tratase, así podremos probar que funciona perfectamente, o para ser utilizado en scripts
 					<ul>
 						<li class="slide"><strong>-i</strong>: El mensaje registrará el PID del proceso que lo llamó</li>
 						<li class="slide"><strong>-s</strong>: El mensaje sale por la salida estandar.</li>
 						<li class="slide"><strong>-f</strong>: Añade el contenido de un fichero al mensaje. Hay que tener cuidado con esta opción ya que puede hacer que el tamaño de los ficheros de log crezca rapidamente.</li>
-						<li class="slide"><strong>-p</strong>: Con este parametro podemos indicar el recurso y la prioriadad del proceso</li>
-						<li class="slide"><strong>-t</strong>: Asignamos una etiqueta para que sea facil identificar el mensaje en el fichero de log</li>
+						<li class="slide"><strong>-p</strong>: Con este parámetro podemos indicar el recurso y la prioridad del proceso</li>
+						<li class="slide"><strong>-t</strong>: Asignamos una etiqueta para que sea fácil identificar el mensaje en el fichero de log</li>
 					</ul>
 				</li>
 			</ul>
 		</section>
 
 		<section class="slide">
-			<h2>Rotacion del log</h2>
+			<h2>Rotación del log</h2>
 			<pre>logrotate</pre>
 			<ul>
 				<li class="slide">

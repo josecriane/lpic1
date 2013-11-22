@@ -36,14 +36,14 @@
 			<pre>useradd [OPCIONES] nombre-usuario</pre>
 			<ul>
 				<li class="slide">
-					Usar <code>usedadd</code> es la forma más común de añadir usuarios al sistema, entre las opciones que podemos usar para cambiar parametros del sistema, tenemos:
+					Usar <code>usedadd</code> es la forma más común de añadir usuarios al sistema, entre las opciones que podemos usar para cambiar parámetros del sistema, tenemos:
 					<ul>
 						<li class="slide"><strong>-d directorio</strong>: Usaremos esta opción para establecer o cambiar el home por defecto del usuario.</li>
-						<li class="slide"><strong>-e fecha-expiracion</strong>: Es la fecha en la que la cuenta expira. El formato es YYYY-MM-DD, si no podemos este parametro las cuentas no expiran.</li>
-						<li class="slide"><strong>-f días-inactivo</strong>: Si el usuario pasa esos días sin conectarse la cuenta expirará automaticamente. Por defecto el valor es -1 que implica que no puede expirar por no loguearse.</li>
+						<li class="slide"><strong>-e fecha-expiración</strong>: Es la fecha en la que la cuenta expira. El formato es YYYY-MM-DD, si no podemos este parámetro las cuentas no expiran.</li>
+						<li class="slide"><strong>-f días-inactivo</strong>: Si el usuario pasa esos días sin conectarse la cuenta expirará automáticamente. Por defecto el valor es -1 que implica que no puede expirar por no loguearse.</li>
 						<li class="slide"><strong>-g grupo</strong>: Establece el grupo por defecto.</li>
-						<li class="slide"><strong>-G grupo [, ....]</strong>: Asigana al usuario otros grupos.</li>
-						<li class="slide"><strong>-p contraseña</strong>: Envia la contraseña directamente al fichero /etc/shadow sin modificarse.</li>
+						<li class="slide"><strong>-G grupo [, ....]</strong>: Asigna al usuario otros grupos.</li>
+						<li class="slide"><strong>-p contraseña</strong>: Envía la contraseña directamente al fichero /etc/shadow sin modificarse.</li>
 						<li class="slide"><strong>-s shell</strong>: Establece la shell por defecto, que puede ser cualquier ejecutable.</li>
 						<li class="slide"><strong>-u UID</strong>: Crea al usuario con ese UID</li>
 						<li class="slide"><strong>-n</strong>: No creamos el grupo del usuario.</li>
@@ -80,14 +80,14 @@
 			<pre>usermod [OPCIONES] usuario</pre>
 			<ul>
 				<li>
-					Este comando funciona de forma similar a como lo hace <code>useradd</code>, con la diferencia de que en lugar de crear un usuario lo modifica, además tiene un par de opciones que ayudan a la modificacion del usuario.
+					Este comando funciona de forma similar a como lo hace <code>useradd</code>, con la diferencia de que en lugar de crear un usuario lo modifica, además tiene un par de opciones que ayudan a la modificación del usuario.
 					<ul>
-						<li class="slide"><strong>-m</strong>: Usada con el <code>-d</code>, además de asignar un nuevo directorio home, esta opción movera los ficheros que haya en el directorio home anterior al nuevo directorio.</li>
+						<li class="slide"><strong>-m</strong>: Usada con el <code>-d</code>, además de asignar un nuevo directorio home, esta opción moverá los ficheros que haya en el directorio home anterior al nuevo directorio.</li>
 						<li class="slide"><strong>-l nuevo-nombre</strong>: Cambia el nombre del usuario de.</li>
 						<li class="slide"><strong>-L / -U</strong>: Exactamente igual que las opciones -L y -U de <code>passwd</code></li>
 					</ul>
 				</li> 
-				<li class="slide">Hay que tener en cuenta que si cambiamos el UID del usuario, es posible que sea necesario ejecuar un <code>chown</code> para devolver la pertenencia del fichero al usuario.</li>
+				<li class="slide">Hay que tener en cuenta que si cambiamos el UID del usuario, es posible que sea necesario ejecutar un <code>chown</code> para devolver la pertenencia del fichero al usuario.</li>
 			</ul>
 		</section>
 		<section class="slide">
@@ -99,11 +99,11 @@
 					<ul>
 						<li class="slide"><strong>-l</strong>: Muestra la información de la expiración de la cuenta.</li>
 						<li class="slide"><strong>-m días</strong>: Indica cada cuanto el usuario puede cambiar la contraseña.</li>
-						<li class="slide"><strong>-M días</strong>: Es el numero maximo de dias que pueden pasar sin que el usuario cambie la contraseña.</li>
+						<li class="slide"><strong>-M días</strong>: Es el numero máximo de días que pueden pasar sin que el usuario cambie la contraseña.</li>
 						<li class="slide"><strong>-W días</strong>: Define el numero de días en los que se avisará al usuario de que la cuenta esta a punto de expirar</li>
 					</ul>
 				</li> 
-				<li class="slide">Hay que tener en cuenta que si cambiamos el UID del usuario, es posible que sea necesario ejecuar un <code>chown</code> para devolver la pertenencia del fichero al usuario.</li>
+				<li class="slide">Hay que tener en cuenta que si cambiamos el UID del usuario, es posible que sea necesario ejecutar un <code>chown</code> para devolver la pertenencia del fichero al usuario.</li>
 			</ul>
 			<p class="slide">Una vez cambiado el SO, debemos ejecutar <code>lilo</code>, para que lilo se reinstale en el MBR</p>
 			<p class="deck-status">
@@ -138,7 +138,7 @@
 					<ul>
 						<li class="slide"><strong>-g GID</strong>: Establecemos el GID que queremos darle a este grupo.</li>
 						<li class="slide"><strong>-r</strong>: Por si se necesitase crear grupos con el GID por debajo de 500.</li>
-						<li class="slide"><strong>-f</strong>: Si no se pudiese crear un grupo <code>groupadd</code>, nos dará un error con este parametro hacemos que aunque falle no nos lo muestre.</li>
+						<li class="slide"><strong>-f</strong>: Si no se pudiese crear un grupo <code>groupadd</code>, nos dará un error con este parámetro hacemos que aunque falle no nos lo muestre.</li>
 						<li class="slide"><strong>-o</strong>: En caso de que queramos que un grupo tengo un GID repetido.</li>
 					</ul>
 				</li>
@@ -146,17 +146,17 @@
 		</section>
 
 		<section class="slide">
-			<h2>Modificacion de grupos</h2>
+			<h2>Modificación de grupos</h2>
 			<pre>groupmod [OPCIONES] grupo</pre>
 			<ul>
 				<li class="slide">
-					Con este comando modificamos los parametros de un grupo que ya exista
+					Con este comando modificamos los parámetros de un grupo que ya exista
 					<ul>
 						<li class="slide"><strong>-g GID</strong>: Establecemos el GID que queremos darle a este grupo.</li>
 						<li class="slide"><strong>-n nuevoNombre</strong>: Le damos un nuevo nombre al grupo.</li>
 					</ul>
 				</li>
-				<li class="slide">Si queremos añadir un usuario a un grupo, no lo hacemos con <code>groupmod</code>, si no que usamos un comando que ya vimos, <code>usermod</code>, con el parametro <code>-G grupo[, ...] usuario</code>. Esto hará que un usuario pertenezca SOLO a los grupos que le pasemos.</li>
+				<li class="slide">Si queremos añadir un usuario a un grupo, no lo hacemos con <code>groupmod</code>, si no que usamos un comando que ya vimos, <code>usermod</code>, con el parámetro <code>-G grupo[, ...] usuario</code>. Esto hará que un usuario pertenezca SOLO a los grupos que le pasemos.</li>
 			</ul>
 		</section>
 
@@ -165,7 +165,7 @@
 			<pre>gpasswd [OPCIONES] grupo</pre>
 			<ul>
 				<li class="slide">
-					Es analogo al passwd de los usuarios.
+					Es análogo al passwd de los usuarios.
 					<ul>
 						<li class="slide"><strong>-a user</strong>: Añade a un usuario al grupo</li>
 						<li class="slide"><strong>-d user</strong>: Quita a un usuario del grupo</li>
@@ -204,7 +204,7 @@
 				<li class="slide">Para eliminar un grupo podemos optar por eliminarlo de los ficheros /etc/group y /etc/gshadow.</li>
 				<li class="slide">Solemos utilizar el comando <code>groupdel</code>.</li>
 				<li class="slide">Este comando comprobará si ese grupo es un grupo primario para algún usuario, en tal caso, no se borrará. Para borrarlo deberemos de cambiar el grupo primario de todos aquellos usuarios que lo tengan como grupo primario.</li>
-				<li class="slide">Al igual que pasaba cuando eliminabamos a un usuario los ficheros no se eliminan y la propiedad de estos pasa a estar vinculada al GID del grupo al que pertenecian. Podemos ayudarnos de la herramienta <code>find</code>, para localizar estos ficheros, por ejemplo <code>find / -g GID</code></li>
+				<li class="slide">Al igual que pasaba cuando eliminábamos a un usuario los ficheros no se eliminan y la propiedad de estos pasa a estar vinculada al GID del grupo al que pertenecían. Podemos ayudarnos de la herramienta <code>find</code>, para localizar estos ficheros, por ejemplo <code>find / -g GID</code></li>
 			</ul>
 		</section>
 
@@ -212,7 +212,7 @@
 			<h2>Quotas de disco</h2>
 			<ul>
 				<li class="slide">
-					Es habitual limitar el espacio de disco duro que pueden usar nuestros usuarios. Si no hicieramos esto, algún usuario podría utilizar la mayoría del espacio, provocando que otros usuarios no puedan trabajar con el sistema de forma correcta. Para este fin, en Linux, contamos con las quotas de disco.</li>
+					Es habitual limitar el espacio de disco duro que pueden usar nuestros usuarios. Si no hiciéramos esto, algún usuario podría utilizar la mayoría del espacio, provocando que otros usuarios no puedan trabajar con el sistema de forma correcta. Para este fin, en Linux, contamos con las quotas de disco.</li>
 				<li class="slide">Lo primero que tenemos que hacer es activar la quota de disco, para ello debemos descargarnos el paquete <code>quota</code>, que se encargará de hacer los pasos necesario para activar la cuota en nuestro sistema.</li>
 				<li class="slide">Ahora que tenemos la quota activa en el sistema, tendremos que configurar el montaje de las particiones para que nos permitan gestionar una cuota de disco. Editando el fichero fstab
 					<ul>
@@ -221,7 +221,7 @@
 					</ul>	
 				</li>
 				<li class="slide">Debemos remontar las particiones para que se monten con las quotas activas.</li>
-				<li class="slide">Ya solo nos queda editar las quotas para los usuarios con <code>edquota usuario</code>, donde debemos distiguir dos parametros, el limite flexible, o soft, que nos permitira pasarnos de forma temporal durante un tiempo determinado, y el limite estricto, o hard que no nos permitirá pasar de dicho limite nunca.</li>
+				<li class="slide">Ya solo nos queda editar las quotas para los usuarios con <code>edquota usuario</code>, donde debemos distinguir dos parámetros, el limite flexible, o soft, que nos permitirá pasarnos de forma temporal durante un tiempo determinado, y el limite estricto, o hard que no nos permitirá pasar de dicho limite nunca.</li>
 				<li class="slide">Con edquota y la opción -t definiremos el tiempo durante el cual podremos pasarnos del limite soft.</li>
 			</ul>
 		</section>
