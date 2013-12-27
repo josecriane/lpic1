@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=1024, user-scalable=no">
+
+	<title>LPIC Slides</title>
+	
+	<!-- Required stylesheet -->
+	<link rel="stylesheet" href="core/deck.core.css">
+	<link rel="stylesheet" href="extensions/status/deck.status.css">
+	<link rel="stylesheet" href="extensions/scale/deck.scale.css">
+	<link rel="stylesheet" href="extensions/hash/deck.hash.css">
+
+	<link rel="stylesheet" href="themes/style/lpic_slides.css">
+	<link rel="stylesheet" href="themes/transition/horizontal-slide.css">
+	
+	<!-- Required Modernizr file -->
+	<script src="modernizr.custom.js"></script>
+</head>
+<body>
+
+	<header>
+		<span><a href="http://josecriane.com/lpic/">Inicio</a></span>
+	</header>
+
+<!-- Begin slides. Just make elements with a class of slide. -->
+	<article class="deck-container">
+		<section class="slide">
+			<h1>Gestión de Hardware</h1>
+		</section>
+
+		<section class="slide">
+			<h2>Interrupciones</h2>
+			<ul>
+				<li class="slide">Una petición de interrupción, es una petición a la CPU para que se encargue de atender otras peticiones.</li>
+				<li class="slide">En una plataforma x86, están numeradas del 0 al 15, aunque en ordenadores x86_64 existen más interrupciones.</li>
+				<li class="slide">Los usos típicos son:
+					<ul>
+						<li class="slide"><strong>0, 8</strong>: Para el reloj de cpu</li>
+						<li class="slide"><strong>1</strong>: Para el teclado</li>
+						<li class="slide"><strong>3,4</strong>: Segundo y primer puerto serie</li>
+						<li class="slide"><strong>5</strong>: O segundo paralelo, o la tarjeta de sonido</li>
+						<li class="slide"><strong>6</strong>: Discos flexibles</li>
+						<li class="slide"><strong>7</strong>: Primer puerto paralelo</li>
+						<li class="slide"><strong>9-10</strong>: Libres</li>
+						<li class="slide"><strong>12</strong>: Ratón PS/2</li>
+						<li class="slide"><strong>13</strong>: Procesador matemático</li>
+						<li class="slide"><strong>14, 15</strong>: Controladores primario y secundario de ATA/PATA</li>
+						<li class="slide"><strong></strong>:</li>
+					</ul>
+				</li>
+			</ul>
+			<p class="deck-status">
+				<span class="deck-status-current"></span>/<span class="deck-status-total"></span>
+			</p>
+		</section>
+
+		<section class="slide">
+			<h2>Proc</h2>
+			<ul>
+				<li class="slide">El sistema cron, es un sistema de fichero virtual, es decir, no hace referencia a ficheros reales, si no que son datos del kernel que se nos presenta de forma de ficheros para facilitar su uso.</li>
+				<li class="slide">/proc/interrupts, este fichero nos muestra que interrupciones, IRQ, se están usando en el kernel, con nombres fáciles de interpretar.</li>
+				<li class="slide">/proc/ioports, este fichero nos indica que direcciones de entrada salida están en uso.</li>
+				<li class="slide">Si quisiéramos englobar todos los recursos podemos usar <code>*</code></li>
+				<li class="slide">Por último, si usamos ; podemos definir diferentes configuraciones para la misma accion.</li>
+			</ul>
+			<p class="deck-status">
+				<span class="deck-status-current"></span>/<span class="deck-status-total"></span>
+			</p>
+		</section>
+
+		<section class="slide">
+			<h2>Coldplug y Hotplug</h2>
+				<ul>
+					<li class="slide">Los dispositivos de conexión en frío, son aquellos que solo se pueden enchufar con el ordenador apagado</li>
+					<li class="slide">Los dispositivos de conexión en caliente, por el contrario son aquellos más habituales y que podemos conectar y desconectar con el ordenador encendido.</li>
+					<li class="slide">Para gestionar los dispositivos hotplug disponemos de:
+						<ul>
+							<li class="slide">Sysfs: otro sistema virtual que se monta en /sys y que nos proporciona información sobre los dispositivos.</li>
+							<li class="slide">HAL: ES un programa que se ejecuta en espacio de usuario y que da información sobre que hardware esta disponible</li>
+							<li class="slide">D-Bus: Es otra abstracción como HAL, y permite a los procesos comunicarse entre si usando notificaciones de otros procesos o del hardware</li>
+							<li class="slide">udev: Es otro sistema de ficheros virtual que se monta en /dev donde se crean ficheros de dispositivos dinámicos según se van cargando o descargando drivers, se puede configurar en /etc/udev</li>
+						</ul>
+					</li>
+				</ul>
+		</section>
+
+		<section class="slide">
+			<h2>Módulos del Kernel</h2>
+				<ul>
+					<li class="slide">En la mayoría de sistemas operativos el hardware se gestiona mediante drivers.</li>
+					<li class="slide">En Linux los drivers se gestionan mediante módulos</li>
+					<li class="slide">Los módulos son están almacenados en /lib/modules que se pueden cargar y descargar para dar acceso al hardware.</li>
+					<li class="slide">Linux carga los módulos que necesita al inicio, pero se pueden cargar o quitar módulos de forma manual.</li>
+				</ul>
+		</section>
+
+		<section class="slide">
+			<h2>Listar módulos cargados</h2>
+			<pre>lsmod</pre>
+			<ul>
+				<li class="slide">
+					Para listar los módulos que están actualmente cargados en el kernel, usamos este comando, la información se divide en tres columnas.
+					<ul>
+						<li class="slide"><strong>Module</strong>: Indica el nombre del modulo</li>
+						<li class="slide"><strong>Size</strong>: Tamaño del modulo.</li>
+						<li class="slide"><strong>Used by</strong>: Indica quien usa el modulo, tiene un numero que representa cuantos módulos o procesos usan este modulo.</li>
+					</ul>
+				</li>
+				<li class="slide">Para saber más información sobre cada modulo podemos usar <code>modinfo</code></li>
+			</ul>
+		</section>
+
+		<section class="slide">
+			<h2>Cargar módulos del kernel</h2>
+			<pre>modprobe modulo</pre>
+			<ul>
+				<li class="slide">Si quisiéramos cargar un modulo usaríamos este comando</li>
+				<li class="slide">Este comando nos cargaría tanto el modulo que queremos como todos aquellos de los que depende</li>
+				<li class="slide">El fichero, <code>/etc/modprobe.conf</code>, es el fichero que usamos para la configuración de modprobe</li>
+				<li class="slide">La opción -n, permite que se pruebe la carga del modulo de forma virtual, para comprobar si hay algún problema.</li>
+				<li class="slide">Si la carga de modulo falla, podemos usar la opción -f para forzar la carga del modulo.</li>
+			</ul>
+		</section>
+
+		<section class="slide">
+			<h2>Eliminar módulos del kernel</h2>
+			<pre>remad modulo</pre>
+			<ul>
+				<li class="slide">Si quisiéramos quitar un modulo del kernel usaríamos este comando</li>
+				<li class="slide">Este comando permite quitar un modulo del kernel</li>
+				<li class="slide">Con -v muestra más información adicional.</li>
+				<li class="slide">La opción -w, permite que si un modulo se está usando no lo elimine, si no que espere a que deje de usarse.</li>
+				<li class="slide">Podemos forzar la eliminación del modulo con la opción -f.</li>
+			</ul>
+		</section>
+
+	</article>
+<!-- End slides. -->
+
+<!-- Required JS files. -->
+<script src="jquery-1.7.2.min.js"></script>
+<script src="core/deck.core.js"></script>
+<script src="extensions/hash/deck.hash.js"></script>
+<script src="extensions/status/deck.status.js"></script>
+<script src="extensions/scale/deck.scale.js"></script>
+
+<!-- Initialize the deck. You can put this in an external file if desired. -->
+<script>
+	$(function() {
+		$.deck('.slide');
+	});
+</script>
+</body>
+</html>
+
+<!--
+
+		<section class="slide">
+			<h2></h2>
+			<pre></pre>
+			<ul>
+				<li class="slide">
+					<ul>
+						<li class="slide"><strong></strong>:</li>
+						<li class="slide"><strong></strong>:</li>
+						<li class="slide"><strong></strong>:</li>
+						<li class="slide"><strong></strong>:</li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+
+--> 

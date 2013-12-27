@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=1024, user-scalable=no">
+
+	<title>LPIC Slides</title>
+	
+	<!-- Required stylesheet -->
+	<link rel="stylesheet" href="core/deck.core.css">
+	<link rel="stylesheet" href="extensions/status/deck.status.css">
+	<link rel="stylesheet" href="extensions/scale/deck.scale.css">
+	<link rel="stylesheet" href="extensions/hash/deck.hash.css">
+
+	<link rel="stylesheet" href="themes/style/lpic_slides.css">
+	<link rel="stylesheet" href="themes/transition/horizontal-slide.css">
+	
+	<!-- Required Modernizr file -->
+	<script src="modernizr.custom.js"></script>
+</head>
+<body>
+
+	<header>
+		<span><a href="http://josecriane.com/lpic/">Inicio</a></span>
+	</header>
+
+<!-- Begin slides. Just make elements with a class of slide. -->
+	<article class="deck-container">
+		<section class="slide">
+			<h1>Gestión de HDDs</h1>
+		</section>
+
+		<section class="slide">
+			<h2>Tipos de HDDs</h2>
+			<ul>
+				<li class="slide"><strong>PATA</strong>: Estos discos usan una inteface paralelo, se transfieren varios bits al mismo tiempo. Sus claves son muy anchos. Su tasa de transferencia es de 16-133 MB/s</li>
+				<li class="slide"><strong>SATA</strong>: Son los discos mas utilizados en la actualidad, usan una inteface serie, y por lo que solo puede transferir un bit al mismo tiempo. Sin embargo la tasa de transferencia es mucho mayor, 187-375 MB/s</li>
+				<li class="slide"><strong>SCSI</strong>: Otro tipo de discos con interface en paralelo, poco conocidos, y permite muchos disco duros usando únicamente un bus de datos.</li>
+			</ul>
+		</section>
+
+		<section class="slide">
+			<h2>Particiones</h2>
+			<ul>
+				<li class="slide">Una partición es una división lógica del disco duro</li>
+				<li class="slide">Las principales ventajas para particionar un disco son:
+					<ul>
+						<li class="slide">Dar soporte a múltiples sistemas operativos</li>
+						<li class="slide">Administración del espacio en disco</li>
+						<li class="slide">Separación del sistema de ficheros</li>
+						<li class="slide">Seguridad ante fallos del disco duro</li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+
+		<section class="slide">
+			<h2>LVM</h2>
+			<ul>
+				<li class="slide">Cuando una partición se queda sin espacio se nos presenta un problema. Para evitar esto tenemos LVM</li>
+				<li class="slide">LVM es un gestor de particiones lógicas bastante flexible, que nos permite redimensionar de forma más o menos sencilla, el tamaño de las particiones asignándoles mas espacio o reduciendo este</li>
+				<li class="slide">Contamos con 4 utilidades
+					<ul>
+						<li class="slide">pvcreate, para administrar las particiones, llamadas volúmenes físicos</li>
+						<li class="slide">vgcreate, para fusionar las particiones en grupos de volúmenes</li>
+						<li class="slide">lvcreate, para crear volúmenes lógicos</li>
+						<li class="slide">lvscan, para administrar los volúmenes lógicos</li>
+					</ul>
+				</li>
+				<li class="slide">No es tan complicado como puede parecer en un primer momento, sin embargo si que supone mayor conocimiento que el sistema de particiones normal</li>
+				<li class="slide">La partición de <code>/boot</code> no debería montarse con LVM</li>
+			</ul>
+		</section>
+		
+
+		<section class="slide">
+			<h2>Particionar un disco</h2>
+			<pre>fdisk dispositivo</pre>
+			<ul>
+				<li class="slide">Cuando queremos particionar un disco en Linux usamos este comando. Es análogo al comando FDISK de los sistemas DOSy Windows</li>
+				<li class="slide">Se trata de un programa iterativo que nos irá preguntando que queremos hacer.
+					<ul>
+						<li class="slide"><strong>p</strong>: Mostramos la tabla de particiones actual, podemos lanzar el comando con la opción -l para que no entre en modo iterativo y nos devuelva el mismo resultado</li>
+						<li class="slide"><strong>n</strong>: Creamos una partición, y nos irá haciendo una serie de preguntas para definir la partición.</li>
+						<li class="slide"><strong>d</strong>: Eliminamos una partición</li>
+						<li class="slide"><strong>a</strong>: Marca la partición como booteable</li>
+						<li class="slide"><strong>m, ?</strong>: Ayuda</li>
+						<li class="slide"><strong>q, w</strong>: Con los dos comandos saldremos de fdisk, con el primero sin guardar los cambios y con el segundo se realizaran todas las modificaciones que le hayamos indicado</li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+
+		<section class="slide">
+			<h2>Tipos de sistema de ficheros</h2>
+			<ul>
+				<li class="slide">
+					Existe varios tipos de sistemas de fichero diferentes
+					<ul>
+						<li class="slide"><strong>ext2, ext3 y ext4</strong>: Son los sistemas de ficheros creados para Linux</li>
+						<li class="slide"><strong>ReiserFS</strong>: Sistema con respaldo a transacciones, muy bueno para sistemas con muchos ficheros pequeños, de menos de 32KB, </li>
+						<li class="slide"><strong>XFS</strong>: Muy robusto y flexible, pero no se suele utilizar.</li>
+						<li class="slide"><strong>FAT</strong>: Muy antiguo, pero muy extendido, tiene problemas con los nombres de fichero y el tamaño de estos</li>
+						<li class="slide"><strong>NTFS</strong>: Es la elección de Windows, el soporte en Linux se consigue con el paquete ntfs3g</li>
+						<li class="slide"><strong>HFS, HFS+</strong>: Es típico de sistemas  MacOS, su soporte en Linux es un tanto precario.</li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+
+		<section class="slide">
+			<h2>Creando el sistema de ficheros</h2>
+			<pre>mkfs [OPCIONES] dispositivo</pre>
+			<ul>
+				<li class="slide">Una vez tengamos las particiones hechas necesitamos crear el sistema de ficheros que usaran esas particiones</li>
+				<li class="slide">Con la opción -t le diremos cual de los tipos de sistemas de ficheros queremos usar en esta partición</li>
+				<li class="slide">Con -c, el sistema irá comprobando si existen sectores defectuosos en la partición, en caso de que haya, los marca como defectuosos y no pueden usarse</li>
+				<li class="slide"><pre>mkfs.fstype dispositivo</pre></li>
+				<li class="slide">Esta es otra manera de crear el sistema de ficheros.</li>
+				<li class="slide"><pre>mkswap dispositivo</pre></li>
+				<li class="slide">Si lo que queremos es crear una partición de swap, y debe activarse con <code>swapon dispositivo</code></li>
+			</ul>
+		</section>
+
+		<section class="slide">
+			<h2>Revisar sistema de ficheros</h2>
+			<pre>fsck [OPCIONES] dispositivo</pre>
+			<ul>
+				<li class="slide">
+					<ul>
+						<li class="slide"><strong>-A</strong>: verifica todos los ficheros que se encuentran en /etc/fstab y que están marcados para ser revisados</li>
+						<li class="slide"><strong>-C</strong>: nos muestra el progreso de la revisión.</li>
+						<li class="slide"><strong>-V</strong>: nos devuelve más información</li>
+						<li class="slide"><strong>-N</strong>: no hace nada, simplemente indica lo que haría si se ejecutase de forma normal.</li>
+						<li class="slide"><strong>-t tipofs</strong>: Le indicamos de que tipo de sistema de fichero se trata, normalmente esto no es necesario.</li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+
+		<section class="slide">
+			<h2>Mantenimiento del Sistema de Ficheros</h2>
+			<ul>
+				<li class="slide"><pre>dumpe2fs [OPCIONES] dispositivo</pre></li>
+				<li class="slide">Nos devuelve información sobre el sistema de ficheros de un dispositivo concreto, el sistema de ficheros puede estar montado cuando queremos acceder a esta información</li>
+				<li class="slide">Por defecto nos muestra mucha información que es irrelevante si no vamos a hacer una configuración muy avanzada, con <code>-h</code> haremos que mucha de esa información se oculte.</li>
+				<li class="slide"><pre>tune2fs [OPCIONES] dispositivo</pre></li>
+				<li class="slide">Nos permite modificar y ajustar los parámetros del sistema de ficheros a nuestro gusto, lo más habitual puede ser indicarle cada cuanto queremos hacer un chequeo del sistema de ficheros-</li>
+				<li class="slide">Con <code>-C numeroDeMontajes</code>, indicamos que queremos que el sistema se check cuando el sistema se monte x veces.</li>
+				<li class="slide">Con <code>-i tiempo d|w|m</code>, le decimos cada cuanto se comprobara el sistema usando días, semanas o meses.</li>
+				<li class="slide">Contamos también con <code>-m porcentaje</code>, que indica que porcentaje del disco se guarda para el uso de root, por defecto se marca el 5% pero puede ser excesivo para sistemas en los que tengamos mucho tamaño. </li>
+			</ul>
+		</section>
+
+		<section class="slide">
+			<h2>Debugfs</h2>
+			<pre>debugfs dispositivo</pre>
+			<ul>
+				<li class="slide">Se trata de un programa interactivo que nos proporcionará las mismas capacidades o posibilidades que tune2fs, dumpe2fs y alguna más</li>
+				<li class="slide">Estés son los comandos más utilizados, pero existen muchos más:
+					<ul>
+						<li class="slide"><strong>stats</strong>: Genera la información del superbloque, similar a dumpe2fs</li>
+						<li class="slide"><strong>stat nombredefichero</strong>: Nos devuelve información sobre un fichero en particular.</li>
+						<li class="slide"><strong>lsdel</strong>: Nos muestra una lista de inodos borrados en el sistema de ficheros</li>
+						<li class="slide"><strong>undelete inode nombre</strong>: Recupera un fichero borrado, indicando el inodo correspondiente, el nombre es el nombre con el que se recuperará el fichero.</li>
+						<li class="slide"><strong>help, ?</strong>: Se trata de la ayuda del programa</li>
+						<li class="slide"><strong>quit</strong>: Salimos del programa.</li>
+						<li class="slide">Además muchos de los comandos de bash funcionan en este prompt.</li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+
+		<section class="slide">
+			<h2>Monitorización del sistema de ficheros</h2>
+			<ul>
+				<li class="slide"><pre>df [OPCIONES] [dispositivo]</pre>
+					<ul>
+						<li class="slide">Realiza un resumen del espacio en la partición</li>
+						<li class="slide"><strong>-a</strong>: todos los sistemas incluso los que son pseudo particiones</li>
+						<li class="slide"><strong>-h</strong>: nos muestra la información de una manera más sencilla de entender para nosotros los humanos.</li>
+						<li class="slide"><strong>-l</strong>: omite todos los dispositivos que no sean locales.</li>
+						<li class="slide"><strong>-t</strong>: indica sobre el tipo de sistema de ficheros.</li>
+					</ul>
+				</li>
+				<li class="slide"><pre>du [OPCIONES] [directorio]</pre>
+					<ul>
+						<li class="slide">Realiza el resumen del espacio de un directorio</li>
+						<li class="slide"><strong>-a</strong>: informa también sobre los ficheros y nos solo sobre los directorios.</li>
+						<li class="slide"><strong>-c</strong>: realiza la suma total al final de la ejecución</li>
+						<li class="slide"><strong>-h</strong>: nos muestra la información de una manera más sencilla de entender para nosotros los humanos.</li>
+						<li class="slide"><strong>-s</strong>: no realiza la monitorización de forma recursiva, si no que solo de los directorios que se le pasan.</li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+
+		<section class="slide">
+			<h2>Montaje y desmontaje de particiones</h2>
+			<ul>
+				<li class="slide"><pre>mount [OPCIONES] [dispositivo] [puntoDeMontaje]</pre>
+					<ul>
+						<li class="slide"><strong>-a</strong>: Monta todos los dispositivos que estén en /etc/fstab</li>
+						<li class="slide"><strong>-r</strong>: monta la partición como solo lectura</li>
+						<li class="slide"><strong>-v</strong>: nos muestra una salida detalla</li>
+						<li class="slide"><strong>-L/-U label/uuid</strong>: monta una partición usando la etiqueta, o el uuid de la partición. Podemos usar <code>blkid</code>, para obtener el uuid de la partición</li>
+						<li class="slide"><strong>-o</strong>: podemos indicarle las opciones para el montaje.</li>
+					</ul>
+				</li>
+				<li class="slide"><pre>umount [OPCIONES] [dispositivo] [puntoDeMontaje]</pre>
+					<ul>
+						<li class="slide"><strong>-a</strong>: desmonta todo lo que tengamos montado en el /etc/fstab</li>
+						<li class="slide"><strong>-f</strong>: fuerza el desmontaje</li>
+						<li class="slide"><strong>-r</strong>: pasa una particion a modo solo lectura.</li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+
+		<section class="slide">
+			<h2>Montaje permanente</h2>
+			<pre>dispositivo puntoDeMontaje SistemaFicheros Opciones dump fsck</pre>
+			<ul>
+				<li class="slide">Este fichero lo usa el sistema para montar las particiones automáticamente</li>
+				<li class="slide"><strong>dump</strong>: Solo es necesario si usamos el comando dump para realizar copias, si está a 1 esta activo y a 0 está desactivado.</li>
+				<li class="slide"><strong>fsck</strong>: el orden de revisión de la partición, con 0 no se revisa, la / debería tener 1 y el resto de particiones 2</li>
+				<li class="slide"><strong>dispositivo</strong>: se puede indicar con el dispositivo en /dev/, o usando parámetros como UUID=</li>
+			</ul>
+		</section>
+
+		<section class="slide">
+			<h2>Opciones de montaje</h2>
+			<ul>
+				<li class="slide"><strong>defaults</strong>: Nos indica las opciones por defecto.</li>
+				<li class="slide"><strong>loop</strong>: sirve para montar ficheros como si fueran dispositivo, suele usarse para montar imágenes ISO, o similar.</li>
+				<li class="slide"><strong>user/nouser</strong>: Indica si una partición puede ser montada o no por usuario, por ejemplo los dispositivos extraíbles deberían poder montarse por parte de los usuarios.</li>
+				<li class="slide"><strong>auto/noauto</strong>: Sirve para indicar si una partición se monta automáticamente o no</li>
+				<li class="slide"><strong>ro/rw</strong>: La partición se monta como solo lectura o como lectura y escritura.</li>
+				<li class="slide"><strong>gid/uid=valor</strong> Indica el grupo o el usuario que será el propietario del todos los ficheros de la partición.</li>
+			</ul>
+		</section>
+
+	</article>
+<!-- End slides. -->
+
+<!-- Required JS files. -->
+<script src="jquery-1.7.2.min.js"></script>
+<script src="core/deck.core.js"></script>
+<script src="extensions/hash/deck.hash.js"></script>
+<script src="extensions/status/deck.status.js"></script>
+<script src="extensions/scale/deck.scale.js"></script>
+
+<!-- Initialize the deck. You can put this in an external file if desired. -->
+<script>
+	$(function() {
+		$.deck('.slide');
+	});
+</script>
+</body>
+</html>
+
+<!--
+
+		<section class="slide">
+			<h2></h2>
+			<pre></pre>
+			<ul>
+				<li class="slide">
+					<ul>
+						<li class="slide"><strong></strong>:</li>
+						<li class="slide"><strong></strong>:</li>
+						<li class="slide"><strong></strong>:</li>
+						<li class="slide"><strong></strong>:</li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+
+		<section class="slide">
+			<h2></h2>
+			<pre></pre>
+			<ul>
+				<li class="slide"><strong></strong>:</li>
+				<li class="slide"><strong></strong>:</li>
+				<li class="slide"><strong></strong>:</li>
+				<li class="slide"><strong></strong>:</li>
+			</ul>
+		</section>
+
+--> 

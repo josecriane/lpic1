@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=1024, user-scalable=no">
+
+	<title>LPIC Slides</title>
+	
+	<!-- Required stylesheet -->
+	<link rel="stylesheet" href="core/deck.core.css">
+	<link rel="stylesheet" href="extensions/status/deck.status.css">
+	<link rel="stylesheet" href="extensions/scale/deck.scale.css">
+	<link rel="stylesheet" href="extensions/hash/deck.hash.css">
+
+	<link rel="stylesheet" href="themes/style/lpic_slides.css">
+	<link rel="stylesheet" href="themes/transition/horizontal-slide.css">
+	
+	<!-- Required Modernizr file -->
+	<script src="modernizr.custom.js"></script>
+</head>
+<body>
+
+	<header>
+		<span><a href="http://josecriane.com/lpic/">Inicio</a></span>
+	</header>
+
+<!-- Begin slides. Just make elements with a class of slide. -->
+	<article class="deck-container">
+		<section class="slide">
+			<h1>Scripts</h1>
+		</section>
+
+		<section class="slide">
+			<h2>Variables de entorno</h2>
+			<ul>
+				<li class="slide">Se utilizan para pasar datos de un programa a otros.</li>
+				<li class="slide"><strong>export</strong>: Lo utilizamos para establecer las variables de entorno.</li>
+				<li class="slide"><strong>export VARIABLE=valor</strong>:</li>
+				<li class="slide">Para utilizar una variable de entorno, lo hacemos iniciando la variable con $, de la forma, $VARIABLE</li>
+				<li class="slide">Si queremos ver todas las variables de entorno que tenemos configuradas usamos el comando <code>env</code></li>
+				<li class="slide">
+					<ul>
+						<li class="slide"><strong>PATH</strong>: Nos muestra todas las rutas de programas ejecutables, que podemos utilizar.</li>
+						<li class="slide"><strong>SHELL</strong>: Indica cual es la shell usada por defecto.</li>
+						<li class="slide"><strong>PWD</strong>: Directorio en el que nos encontramos</li>
+						<li class="slide"><strong>HOME</strong>: Directorio home del usuario</li>
+						<li class="slide"><strong>EDITOR</strong>: Editar por defecto.</li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+
+		<section class="slide">
+			<h2>Alias</h2>
+			<pre>alias NuevoAlias='comando'</pre>
+			<ul>
+				<li class="slide">Se usa para crear sustitutos, de llamadas a programas</li>
+				<li class="slide">Suele usarse para simplificar llamadas complejas.</li>
+				<li class="slide">Es volátil, es decir, cuando una terminal o sesión se cierra los alias creados en esa session se eliminan</li>
+			</ul>
+		</section>
+
+		<section class="slide">
+			<h2>Parámetros y Variables</h2>
+			<ul>
+				<li class="slide">Las variables se construyen usando VARIABLE=valor, son globales a todo el script a no ser que lleven delante la palabra local.</li>
+				<li class="slide">Para usar la variable usaremos $VARIABLE</li>
+				<li class="slide">Variables de posición
+					<ul>
+						<li class="slide">Se usan para indicar los pare metros que se pasan entre funciones. Y son locales a donde se reciben.</li>
+						<li class="slide"><strong>$0</strong>: Nombre del programa</li>
+						<li class="slide"><strong>$1-9</strong>: Parámetros del programa.</li>
+						<li class="slide"><strong>$#</strong>: Numero de parámetros recibidos</li>
+						<li class="slide"><strong>$*</strong>: Todos los argumentos separados por el carácter de $IFS</li>
+						<li class="slide"><strong>$@</strong>: Todos los argumentos separados por el carácter espacio</li>
+					</ul>
+				</li>
+				<li class="slide"><strong>$?</strong>: Nos devuelve un código relacionado con el comando anterior, de tal manera que podemos saber si dicho comando fallo, o si se ejecutó de forma correcta.</li>
+				<li class="slide"><strong>read VARIABLE</strong>: Podemos establecer el valor de VARIABLE pidiendosela al usuario.</li>
+			</ul>
+		</section>
+
+		<section class="slide">
+			<h2>Expresiones condicionales, If/Else</h2>
+			<pre>
+if [ condicion ]
+  then
+    Comandos
+  else
+  	Comandos
+fi</pre>
+			<ul>
+				<li class="slide">Condiciones numéricas
+					<ul>
+						<li class="slide"><strong>-lt</strong>: Menor que, <.</li>
+						<li class="slide"><strong>-le</strong>: Menor o igual que, <=</li>
+						<li class="slide"><strong>-eq</strong>: Igual, ==</li>
+						<li class="slide"><strong>-ge</strong>: Mayor o igual que, >=</li>
+						<li class="slide"><strong>-gt</strong>: Mayor que, ></li>
+						<li class="slide"><strong>-ne</strong>: No es igual que, !=</li>
+					</ul>
+				</li>
+				<li class="slide">Las condiciones se pueden apilar usando, && para hacer un and, y || para el or.</li>
+				<li class="slide">Existen otras condiciones como, -s fichero, si el fichero existe y su tamaño es mayor que 0 devuelve verdadero falso, en caso contrario</li>
+				<li class="slide">También podemos comparar cadenas de texto usando ==</li>
+			</ul>
+		</section>
+
+		<section class="slide">
+			<h2>Expresiones condicionales, Case</h2>
+			<pre>
+case VARIABLE in
+  Patrón )
+    Comandos
+    ;;
+  . . .
+esac</pre>
+			<ul>
+				<li class="slide">Se usa en lugar de usar gran cantidad de Ifs Anidados</li>
+				<li class="slide">Se puede utilizar con patrones de texto y con numeros.</li>
+				<li class="slide">Un patrón puede responder  a mas de una patrón, si los separamos con |, un patrón valido podría ser, -s | save )</li>
+				<li class="slide">Usamos el patrón * ) para indicar que si no correspondió con ningún patrón anterior haga lo que se indica en este.</li>
+			</ul>
+		</section>
+
+		<section class="slide">
+			<h2>Bucle for</h2>
+			<pre>
+for VARIABLE in Lista
+  do
+    Comandos
+done
+			</pre>
+			<ul>
+				<li class="slide">La lista será una cadena de texto donde los elementos se separan con el carácter de IFS, por defecto, espacio</li>
+				<li class="slide">Podemos usar comandos que nos devuelvan una lista</li>
+				<li class="slide">Un comando útil puede ser seq
+					<ul>
+						<li class="slide"><strong>seq numero</strong>: Entenderá que queremos una lista de numeros, desde 1 hasta numero indicado</li>
+						<li class="slide"><strong>seq inicio fin</strong>: Nos dará una lista que tenga los números de el de inicio hasta el de fin</li>
+						<li class="slide"><strong>seq inicio paso fin</strong>: Similar al anterior pero irá avanzando, utilizando el paso que le indiquemos</li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+
+		<section class="slide">
+			<h2>Bucle while</h2>
+			<pre>
+while [ Condición ]
+  do
+    Comandos
+done
+			</pre>
+			<ul>
+				<li class="slide">Es una mezcla entre bucle y condicional.</li>
+				<li class="slide">Se ejecutará el bucle mientras se cumpla la condición</li>
+				<li class="slide">Si en lugar de escribir while, pusiéramos <code>until</code>, se ejecutaría el bucle mientras la condición no se cumpliese</li>
+			</ul>
+		</section>
+
+		<section class="slide">
+			<h2>Funciones</h2>
+			<ul>
+				<li class="slide">Son cachos de código bash que pueden ser llamados en cualquier momento.</li>
+				<li class="slide">Se definen añadiendo al final del nombre de la función unos <code>()</code></li>
+				<li class="slide">El código que ejecutará la función tiene que ir entre <code>{ }</code></li>
+				<li class="slide">Una función valida sería:
+					<pre>
+webServer() {
+  if [ $# -gt 0 ]
+  then
+    python -m SimpleHTTPServer $1
+  else
+    echo "Usage: $NAME -w PORT"
+    echo "       $NAME --webserver PORT"
+  fi
+}
+					</pre>
+				</li>
+			</ul>
+		</section>
+
+	</article>
+<!-- End slides. -->
+
+<!-- Required JS files. -->
+<script src="jquery-1.7.2.min.js"></script>
+<script src="core/deck.core.js"></script>
+<script src="extensions/hash/deck.hash.js"></script>
+<script src="extensions/status/deck.status.js"></script>
+<script src="extensions/scale/deck.scale.js"></script>
+
+<!-- Initialize the deck. You can put this in an external file if desired. -->
+<script>
+	$(function() {
+		$.deck('.slide');
+	});
+</script>
+</body>
+</html>
+
+<!--
+
+		<section class="slide">
+			<h2></h2>
+			<pre></pre>
+			<ul>
+				<li class="slide">
+					<ul>
+						<li class="slide"><strong></strong>:</li>
+						<li class="slide"><strong></strong>:</li>
+						<li class="slide"><strong></strong>:</li>
+						<li class="slide"><strong></strong>:</li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+
+		<section class="slide">
+			<h2></h2>
+			<pre></pre>
+			<ul>
+				<li class="slide"><strong></strong>:</li>
+				<li class="slide"><strong></strong>:</li>
+				<li class="slide"><strong></strong>:</li>
+				<li class="slide"><strong></strong>:</li>
+			</ul>
+		</section>
+
+--> 

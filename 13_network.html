@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=1024, user-scalable=no">
+
+	<title>LPIC Slides</title>
+	
+	<!-- Required stylesheet -->
+	<link rel="stylesheet" href="core/deck.core.css">
+	<link rel="stylesheet" href="extensions/status/deck.status.css">
+	<link rel="stylesheet" href="extensions/scale/deck.scale.css">
+	<link rel="stylesheet" href="extensions/hash/deck.hash.css">
+
+	<link rel="stylesheet" href="themes/style/lpic_slides.css">
+	<link rel="stylesheet" href="themes/transition/horizontal-slide.css">
+	
+	<!-- Required Modernizr file -->
+	<script src="modernizr.custom.js"></script>
+</head>
+<body>
+
+	<header>
+		<span><a href="http://josecriane.com/lpic/">Inicio</a></span>
+	</header>
+
+<!-- Begin slides. Just make elements with a class of slide. -->
+	<article class="deck-container">
+		<section class="slide">
+			<h1>Redes</h1>
+		</section>
+
+		<section class="slide">
+			<h2>Tipos de Redes</h2>
+			<ul>
+				<li class="slide">Ethernet
+					<ul>
+						<li class="slide"><strong>10Base-T</strong>: Base para los estándares siguiente</li>
+						<li class="slide"><strong>100Base-T</strong>: También llamado, Fast Ethernet. Sustituye a 10Base-T, permite velocidades de hasta 100 MB/s</li>
+						<li class="slide"><strong>1000Base-T</strong>: Gigabit Ethernet, usa cables categoría 5e o superior, y permite velocidades de hasta 1 GB/s</li>
+					</ul>
+				</li>
+				<li class="slide"><strong>Token Ring</strong>: Topología en anillo, ya en desuso</li>
+				<li class="slide"><strong>Fibre Channel</strong>: Suele usarse en cableado vertical, y en cableado de campus.</li>
+				<li class="slide"><strong>Wifi</strong>: La principal diferencia es que no necesita cables, como la información va por el aire, debería ir cifrada, 802.11abgn</li>
+			</ul>
+		</section>
+
+		<section class="slide">
+			<h2>Protocolos TCP/IP</h2>
+			<ul>
+				<li class="slide"><strong>¿Que es TCP/IP?</strong>: Es un conjunto de protocolos en los que se basa internet.</li>
+				<li class="slide"><strong>Capas</strong>: Se divide en 4 capas principales, Aplicación, Transporte, Internet y Enlace</li>
+				<li class="slide"><strong>IP</strong>: Principal protocolo de comunicación, pertenece a la capa de Internet, no está orientado a conexión.</li>
+				<li class="slide"><strong>ICMP</strong>: Es parte del núcleo de internet, es un protocolo de mensaje de control, uno de los mensajes es Echo Reply, suele ser usado para hacer ping a las maquinas.</li>
+				<li class="slide"><strong>UDP</strong>: Protocolo de transporte, se basa, en el intercambio de datagramas, no tiene confirmación ni control de flujo, si un paquete se pierde no se puede reenviar.</li>
+				<li class="slide"><strong>TCP</strong>: Pertenece a la capa de transporte, presenta conexiones fiables, comprueba errores las conexiones se establecen mediante handshake.</li>
+			</ul>
+		</section>
+
+		<section class="slide">
+			<h2>Direcciones MAC</h2>
+			<ul>
+				<li class="slide">Las direcciones mac son 6 grupos de bytes separados por ":" </li>
+				<li class="slide">Son en teoría únicas aunque en la practica esto no es cierto.</li>
+				<li class="slide">Son usadas por los dispositivos de red intermedios como switches o routers</li>
+				<li class="slide">Son llamadas direcciones físicas, pues se asignan a la tarjeta de red del dispositivo.</li>
+			</ul>
+		</section>
+
+		<section class="slide">
+			<h2>Direcciones IP</h2>
+			<ul>
+				<li class="slide">IPv4</li>
+				<li class="slide">Las direcciones IP son 4 grupos de 1 byte.</li>
+				<li class="slide">Se dividen en 5 categorías
+					<ul>
+						<li class="slide"><strong>A</strong>: empiezan por 0, 7 bit para indicar la red, las direcciones van de 1.0.0.0 a 127.255.255.255</li>
+						<li class="slide"><strong>B</strong>: empiezan por 10, 14 bits para indicar la red, de 128.0.0.0 hasta 191.255.255.255</li>
+						<li class="slide"><strong>C</strong>: empiezan por 110, 21 bits para indicar la red, de 192.0.0.0 hasta 223.255.255.255</li>
+						<li class="slide">Las dos ultimas no se usan</li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+
+		<section class="slide">
+			<h2>Mascara de subred</h2>
+			<ul>
+				<li class="slide">Se produce un problema a la hora de que las ips son muy limitadas.</li>
+				<li class="slide">Surge como solución las subredes, y para identificar a estas, se crean las mascaras de subred.</li>
+				<li class="slide">Las mascaras de subred se indican con 4 grupos de 1 byte al igual que las ips.</li>
+				<li class="slide">Las mascaras son un conjunto de unos que indican cuandos bits forman parte de la subred, y los ceros serían los hosts.</li>
+				<li class="slide">La primera dirección de cada subred se llama dirección de subred, y la ultima dirección de broadcast.</li>
+				<li class="slide">Además de indicar las mascaras como las IPs podemos indicarlas como /numero, este numero indica el numero de unos que hay en la mascara.</li>
+			</ul>
+		</section>
+
+		<section class="slide">
+			<h2>Nombres de Host</h2>
+			<ul>
+				<li class="slide">Es difícil para la gente recordar direcciones IP, por los que se crea otro sistema.</li>
+				<li class="slide">Se crean direcciones alias, llamados host que identifican a estas IP</li>
+				<li class="slide">Para resolver los nombres de host y obtener la IP de la maquina a la que es necesario conectarse usamos servidores DNS, domain name server</li>
+				<li class="slide">Para resolver los nombres en Linux usamos dos ficheros, el fichero /etc/hosts donde indicamos que nombres para determinadas IPs, el fichero /etc/nsswitch.conf, este fichero indicamos como queremos resolver las dependencias, por defecto primero se busca en el fichero /etc/host, y luego se realiza la petición al servidor DNS</li>
+			</ul>
+		</section>
+
+		<section class="slide">
+			<h2>Puertos</h2>
+			<ul>
+				<li class="slide">Normalmente, un servidor presenta más de un servicio, para que el sistema pueda identificar a que servicio se está realizando una petición se usan los puertos</li>
+				<li class="slide">Los puertos más conocidos, son:
+					<ul>
+						<li class="slide"><strong>20 y 21</strong>: Son los usados por ftp.</li>
+						<li class="slide"><strong>22</strong>: Pertenece a ssh</li>
+						<li class="slide"><strong>23</strong>: telnet</li>
+						<li class="slide"><strong>25</strong>: SMTP</li>
+						<li class="slide"><strong>80</strong>: HTTP</li>
+						<li class="slide"><strong>443</strong>: HTTPS</li>
+					</ul>
+				</li>
+				<li class="slide">Hasta el puerto 1024 es necesario tener privilegios de administrador</li>
+				<li class="slide">/etc/services asocia servicios a puertos</li>
+			</ul>
+		</section>
+
+		<section class="slide">
+			<h2>Configuración de Red</h2>
+			<ul>
+				<li class="slide"><strong>DHCP</strong>: Se usa para configurar la red de forma dinámica, si es necesario configurar dhco para un dispositivo usamos <code>dhclient interface</code></li>
+				<li class="slide">Para configurar el sistema de forma estática usamos el fichero /etc/network/interfaces
+					<ul>
+						<li class="slide">iface eth0 inet static</li>
+						<li class="slide">address ip</li>
+						<li class="slide">network DireccionDeRed</li>
+						<li class="slide">netmask mascara</li>
+						<li class="slide">broadcast IP</li>
+						<li class="slide">gateway direccionIPgateway</li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+
+		<section class="slide">
+			<h2>Ifconfig y route</h2>
+			<ul>
+				<li class="slide"><pre>ifconfig [Inteface [up Ip netmask MascaraDeRed]]</pre>
+					<ul>
+						<li class="slide">Si no indicamos ninguna de las opciones que tenemos entre corchetes, nos devolverá la información de red de todas las interfaces que tenemos levantadas</li>
+						<li class="slide">Si simplemente indicamos la interface, solo nos devolverá la información de red de esa interface.</li>
+						<li class="slide">Si indicamos el resto de la información lo que estamos haciendo es establecer esa configuración de red a la interface. Utilizamos este método cuando queremos realizar configuraciones de red de forma manual, esto puede ser útil, si queremos comprobar si la nueva configuración funciona antes de pasarla al fichero <code>/etc/interfaces</code>.</li>
+					</ul>
+				</li>
+				<li class="slide"><pre>route [add|del] [-net|-host] destino [netmask nm] [gw gateway] [reject] [interface]</pre>
+					<ul>
+						<li class="slide">Con el primer parámetro, añadiremos o eliminaremos una ruta hacia el destino, si usamos el segundo estamos indicando si el destino se trata de una red o de un host</li>
+						<li class="slide">Con netmask podemos indicar la mascara de red, en caso de que se trate de un red de ámbito local.</li>
+						<li class="slide">gw es la dirección IP a la que vamos a enviar las peticiones que tengan el destino especificado, normalmente usaremos la ip del router.</li>
+						<li class="slide">Si usamos la opción reject, lo que hará es que todas aquellas peticiones que tengan el destino especificado, se rechazarán.</li>
+						<li class="slide">Por ultimo debemos indicar que interface vamos a usar para la nueva ruta.</li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+
+		<section class="slide">
+			<h2>ifup y ifdown</h2>
+			<pre>ifup / ifdown interface</pre>
+			<ul>
+				<li class="slide">Estos dos comandos nos servirán para levantar y bajar interfaces de red</li>
+				<li class="slide">En ocasiones nos interesa poder tirar una interface de red, para comprobar o realizar ciertas tareas de mantenimiento. Como podría ser el caso de que quisiéramos comprobar que la configuración de red funcionará la próxima vez que encendamos el sistema.</li>
+				<li class="slide">Otro caso en el que podemos necesitar levantar una interface puede ser en el caso de que queramos comprobar que nuestro sistema de enroutado funciona correctamente y sale a internet por la interface adecuada, sin tener que ir a desenchufar el cable.</li>
+				<li class="slide">Hay que tener en cuenta, que por defecto un sistema Linux no reenvía paquetería que le lleve y cuyo destinatario no sea él, para habilitar este comportamiento el fichero /proc/sys/net/ipv4/ip_forward debe contener un "1".</li>
+			</ul>
+		</section>
+
+		<section class="slide">
+			<h2>Diagnostico de red</h2>
+			<ul>
+				<li class="slide"><pre>ping [OPCIONES] ip</pre>
+					<ul>
+						<li class="slide">Este comando se utiliza cuando queremos comprobar que existe conectividad hacia una determinada ip</li>
+						<li class="slide">Este comando envía un paquete ICMP Echo, hacia la ip que se le indique y espera la respuesta.</li>
+						<li class="slide">Envía paquetes de forma ininterrumpida hasta que nosotros paremos el programa, si usamos el parámetro <code>-c numero</code>, le indicamos el numero de paquetes que queremos que envie.</li>
+					</ul>
+				</li>
+				<li class="slide"><pre>traceroute [OPCIONES] ip</pre>
+					<ul>
+						<li class="slide">Nos mostrará la ruta que se sigue hasta llegar a la IP de destino.</li>
+						<li class="slide">Suele utilizarse para encontrar problemas en la comunicación entre maquinas, pudiendo determinar el nodo donde se produce el problema.</li>
+						<li class="slide">Con <code>-n</code> le indicaremos a traceroute que queremos que nos muestre IPs en lugar de nombres de host o de dominio. Esto hará que la ejecución sea más rápida pues no es necesario realizar peticiones al servidor de dns.</li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+
+		<section class="slide">
+			<h2>Otros comandos útiles</h2>
+			<ul>
+				<li class="slide"><pre>netstat [OPCIONES]</pre>
+					<ul>
+						<li class="slide">Sirve para mostrarnos el estado de las conexiones y los servicios con funciones de red que se encuentran activos en el sistema</li>
+						<li class="slide">Con -i mostramos la información sobre las interfaces, de forma similar a ifconfig.</li>
+						<li class="slide">La opción -r la información sobre el enrutado del sistema, como hace route.</li>
+						<li class="slide">La opción de -p sirve para mostrar la información sobre que programa está usando esa conexión.</li>
+						<li class="slide">Con -a nos muestra la información sobre todos los puertos que están abiertos.</li>
+					</ul>
+				</li>
+				<li class="slide"><pre>telnet ip puerto</pre>
+					<ul>
+						<li class="slide">Normalmente se usa como cliente de control remoto.</li>
+						<li class="slide">Pero sirve también para conectarte, a otros servicios y interactuar con ellos.</li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+
+	</article>
+<!-- End slides. -->
+
+<!-- Required JS files. -->
+<script src="jquery-1.7.2.min.js"></script>
+<script src="core/deck.core.js"></script>
+<script src="extensions/hash/deck.hash.js"></script>
+<script src="extensions/status/deck.status.js"></script>
+<script src="extensions/scale/deck.scale.js"></script>
+
+<!-- Initialize the deck. You can put this in an external file if desired. -->
+<script>
+	$(function() {
+		$.deck('.slide');
+	});
+</script>
+</body>
+</html>
